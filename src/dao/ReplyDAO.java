@@ -59,6 +59,7 @@ public class ReplyDAO {
 			conn = DBConn.getConnection();
 			
 			StringBuilder sql = new StringBuilder();
+			sql.append("123123");
 			
 		} finally {
 			if(conn != null)conn.close();
