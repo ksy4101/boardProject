@@ -3,13 +3,11 @@ package vo;
 public class BoardVO {
 	private int boardNo;
 	private String boardName;
-	
-	public BoardVO(){
+
+	public BoardVO() {
 		super();
 	}
-	
-	
-	
+
 	public BoardVO(int boardNo, String boardName) {
 		super();
 		this.boardNo = boardNo;
@@ -31,7 +29,5 @@ public class BoardVO {
 	public void setBoardName(String boardName) {
 		this.boardName = boardName;
 	}
-	
-	
-	
+
 }

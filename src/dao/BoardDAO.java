@@ -98,8 +98,7 @@ public class BoardDAO {
 			conn = DBConn.getConnection();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append(
-					"delete from reply         																								");
+			sql.append("delete from reply         																					");
 			sql.append("where art_no = (select art_no from article where board_no = ?)							");
 			pstmt = conn.prepareStatement(sql.toString());
 
@@ -157,7 +156,7 @@ public class BoardDAO {
 		try {
 
 			conn = DBConn.getConnection();
-			
+
 			stmt = conn.createStatement();
 
 			StringBuilder sql = new StringBuilder();
@@ -165,8 +164,8 @@ public class BoardDAO {
 			sql.append("from board 											");
 			sql.append("order by board_name asc						");
 			rs = stmt.executeQuery(sql.toString());
-			
-			while(rs.next()) {				
+
+			while (rs.next()) {
 				BoardVO bvo = new BoardVO();
 				bvo.setBoardName(rs.getString(1));
 				board.add(bvo);
@@ -189,7 +188,7 @@ public class BoardDAO {
 				e2.printStackTrace();
 			}
 		}
-		
+
 		return board;
 
 	}
