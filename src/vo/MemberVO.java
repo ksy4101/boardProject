@@ -35,6 +35,35 @@ public class MemberVO {
 	}
 	
 	
+	
+	
+
+
+	public MemberVO(String memId, String jumin) {
+		super();
+		this.memId = memId;
+		this.jumin = jumin;
+	}
+	
+	
+
+
+	public MemberVO(String memId, String jumin, String password) {
+		super();
+		this.memId = memId;
+		this.jumin = jumin;
+		this.password = password;
+	}
+
+
+	public MemberVO(String memId, String name, String phone, String email) {
+		super();
+		this.memId = memId;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+	}
+	
 
 
 	public String getMemId() {
