@@ -13,7 +13,7 @@ public class DBConn {
 			e.printStackTrace();
 		}
 		
-		String url = "jdbc:oracle:thin:@kodica0306-PC:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.40.67:1521:xe";
 		String user = "asd111";
 		String password = "java1234";
 		return DriverManager.getConnection(url,user,password);
