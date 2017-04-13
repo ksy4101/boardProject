@@ -57,6 +57,19 @@ public class MemberDAO {
 		return null;
 	}
 	
+	//회원 로그인
+	public String selectLogin(String id, String password){
+		
+		MemberVO member = this.selectMember(id);//입력한 아이디에 해당하는 객체
+		
+		if(member.getPassword().equals(password)){//해당 객체의 비밀번호와 입력한 비밀번호가 같은 경우
+			return id;//아이디 반환
+		}
+		else{//같지 않은경우
+			return null;//null 반환
+		}
+	}
+	
 	//전체 회원 조회
 	public Vector<Vector<Object>> selectMemberList() throws SQLException {
 		Vector<Vector<Object>> mems = new Vector<Vector<Object>>();
