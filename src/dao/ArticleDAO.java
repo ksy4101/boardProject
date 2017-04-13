@@ -22,6 +22,7 @@ public class ArticleDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("insert into article(art_no, mem_id, board_no, subject, content, write_date)"    );
 			sql.append("values(ART_NO_SEQ.nextval, ?, ?, ?, ?, sysdate)"    );
+			ps = conn.prepareStatement(sql.toString());
 	    	  
 			ps.setString(1, art.getMemId());
 			ps.setInt(2, art.getBoardNo());
@@ -75,7 +76,51 @@ public class ArticleDAO {
 	}
 	
 	//게시글 삭제
-	
+	public void deleteArticle(int articleNo) throws SQLException {
+
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+
+	      try {
+
+	         conn = DBConn.getConnection();
+
+	         StringBuilder sql = new StringBuilder();
+	         sql.append("delete from reply                     ");
+	         sql.append("where art_no = ?                     ");
+	         pstmt = conn.prepareStatement(sql.toString());
+
+	         pstmt.setInt(1, articleNo);
+
+	         pstmt.executeUpdate();
+	         pstmt.close();
+
+	         sql.delete(0, sql.length());
+
+	         sql.append("delete from article                                       ");
+	         sql.append("where art_no = ?                                    ");
+	         pstmt = conn.prepareStatement(sql.toString());
+
+	         pstmt.setInt(1, articleNo);
+
+	         pstmt.executeUpdate();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            if (pstmt != null) {
+	               pstmt.close();
+	            }
+	            if (conn != null) {
+	               conn.close();
+	            }
+	         } catch (Exception e2) {
+	            e2.printStackTrace();
+	         }
+	      }
+
+	   }
 	
 	//게시글 목록 조회
 	public Vector<Vector<Object>> selectAllArticle() throws SQLException{
@@ -149,7 +194,69 @@ public class ArticleDAO {
 		return art;
 	}
 	
-	//게시글 검색
 	
+	
+	//게시글 검색
+	public Vector<Vector<Object>> searchArticle(String keyfield, String keyword) throws SQLException {
+
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      Vector<Vector<Object>> arts = new Vector<Vector<Object>>();
+
+	      try {
+
+	         conn = DBConn.getConnection();
+
+	         StringBuilder sql = new StringBuilder();
+	         sql.append("select art_no, subject,    mem_id, write_date                  ");
+	         sql.append("from article                                                    ");
+	         sql.append("where                                                           ");
+
+	         if (keyfield.equals("제목")) {
+	            sql.append("subject = ?                                                    ");
+	         } else if (keyfield.equals("내용")) {
+	            sql.append("content = ?                                                    ");
+	         } else {
+	            sql.append("mem_id = ?                                                    ");
+	         }
+
+	         sql.append("order by write_date desc                  ");
+	         pstmt = conn.prepareStatement(sql.toString());
+
+	         pstmt.setString(1, "%" + keyword + "%");
+
+	         rs = pstmt.executeQuery(sql.toString());
+
+	         while (rs.next()) {
+	            Vector<Object> art = new Vector<Object>();
+	            art.addElement(rs.getInt(1));
+	            art.addElement(rs.getString(2));
+	            art.addElement(rs.getString(3));
+	            art.addElement(rs.getString(4));
+	            arts.add(art);
+	         }
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            if (rs != null) {
+	               rs.close();
+	            }
+	            if (pstmt != null) {
+	               pstmt.close();
+	            }
+	            if (conn != null) {
+	               conn.close();
+	            }
+	         } catch (Exception e2) {
+	            e2.printStackTrace();
+	         }
+	      }
+
+	      return arts;
+
+	   }
 	
 }
