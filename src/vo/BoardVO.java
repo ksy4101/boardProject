@@ -8,8 +8,11 @@ public class BoardVO {
 		super();
 	}
 	
-	
-	
+	public BoardVO(String boardName) {
+		super();
+		this.boardName = boardName;
+	}
+
 	public BoardVO(int boardNo, String boardName) {
 		super();
 		this.boardNo = boardNo;
@@ -31,7 +34,10 @@ public class BoardVO {
 	public void setBoardName(String boardName) {
 		this.boardName = boardName;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "BoardVO [boardNo=" + boardNo + ", boardName=" + boardName + "]";
+	}
 	
 }

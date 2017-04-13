@@ -1,5 +1,13 @@
 package dao;
 
-public class BoardDAO {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
+import conn.DBConn;
+
+public class BoardDAO {
+	
+	
+	
 }
