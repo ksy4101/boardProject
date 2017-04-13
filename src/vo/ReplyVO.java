@@ -2,7 +2,7 @@ package vo;
 
 public class ReplyVO {
 	private int reNo;
-	private int artNO;
+	private int artNo;
 	private String memId;
 	private String reContent;
 	private String reDate;
@@ -13,14 +13,17 @@ public class ReplyVO {
 		
 	}
 
-	public ReplyVO(int reNo, int artNO, String memId, String reContent, String reDate) {
+
+	public ReplyVO(int reNo, int artNo, String memId, String reContent, String reDate) {
 		super();
 		this.reNo = reNo;
-		this.artNO = artNO;
+		this.artNo = artNo;
 		this.memId = memId;
 		this.reContent = reContent;
 		this.reDate = reDate;
 	}
+
+
 
 
 	public int getReNo() {
@@ -33,13 +36,13 @@ public class ReplyVO {
 	}
 
 
-	public int getArtNO() {
-		return artNO;
+	public int getArtNo() {
+		return artNo;
 	}
 
 
-	public void setArtNO(int artNO) {
-		this.artNO = artNO;
+	public void setArtNo(int artNo) {
+		this.artNo = artNo;
 	}
 
 
@@ -71,12 +74,11 @@ public class ReplyVO {
 	public void setReDate(String reDate) {
 		this.reDate = reDate;
 	}
-	
 
 
 	@Override
 	public String toString() {
-		return "ReplyVO [reNo=" + reNo + ", artNO=" + artNO + ", memId=" + memId + ", reContent=" + reContent
+		return "ReplyVO [reNo=" + reNo + ", artNo=" + artNo + ", memId=" + memId + ", reContent=" + reContent
 				+ ", reDate=" + reDate + "]";
 	}
 
