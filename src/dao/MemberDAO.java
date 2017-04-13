@@ -12,8 +12,9 @@ import conn.DBConn;
 import vo.MemberVO;
 
 public class MemberDAO {
-	//로그인 부분
-	public MemberVO selectLogin(String id, String password){
+	
+	//회원 상세 조회
+	public MemberVO selectMember(String id){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -22,12 +23,11 @@ public class MemberDAO {
 			StringBuilder sql = new StringBuilder();//쿼리문 받을 변수 선언
 			sql.append("select MEM_ID, JUMIN, PASSWORD, NAME, POST_NO, PHONE, EMAIL, MEMO, GRADE, ADDRESS ");//쿼리문 입력
 			sql.append("from MEMBER");//쿼리문 입력
-			sql.append("where MEM_ID = ? and PASSWORD = ?");//쿼리문 입력
-			
-			pstmt.setString(1, id);//입력받은 id값 세팅
-			pstmt.setString(2, password);//입력받은 password값 세팅
+			sql.append("where MEM_ID = ? ");//쿼리문 입력
 			
 			pstmt = conn.prepareStatement(sql.toString());//쿼리문 입력
+			
+			pstmt.setString(1, id);//입력받은 id값 세팅
 			
 			rs = pstmt.executeQuery();//쿼리문 실행 및 resultset에 저장
 			
