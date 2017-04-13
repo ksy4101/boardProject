@@ -30,7 +30,7 @@ public class ReplyDAO {
 			sql.append("values(RE_NO_SEQ.nextval, ? ,? , ?, sysdate)"						);
 			pstmt = conn.prepareStatement(sql.toString());
 			
-			pstmt.setInt(1, reply.getArtNO()); // 
+			pstmt.setInt(1, reply.getArtNo()); // 
 			pstmt.setString(2, reply.getMemId());
 			pstmt.setString(3, reply.getReContent());
 			
