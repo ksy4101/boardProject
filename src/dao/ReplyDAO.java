@@ -1,24 +1,19 @@
 package dao;
 
+import java.sql.*;
+import java.awt.*;
+import java.awt.Event.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import conn.DBConn;
 import vo.ReplyVO;
+import conn.DBConn;
 
 public class ReplyDAO {
-	
-	
-	
-	//댓글 등록
-	public void insertReply (ReplyVO reply) throws SQLException {
+
+	public void insertReply(ReplyVO reply) throws SQLException {
+
 		Connection conn = null;
-		PreparedStatement pstmt =  null;
-	
+		PreparedStatement pstmt = null;
+
 		int reNO = 0; 
 		try {
 			conn = DBConn.getConnection();
@@ -36,39 +31,20 @@ public class ReplyDAO {
 			
 			pstmt.executeUpdate();
 			pstmt.close();
-			
-			
-		
-			
-			
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			if(conn != null)conn.close();
-			if(pstmt != null)pstmt.close();
-		
-			
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
-		
-		
-	} 
-	
-	//댓글 수정
-	public void updateReply(ReplyVO reply) throws SQLException {
-	
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = DBConn.getConnection();
-			
-			StringBuilder sql = new StringBuilder();
-			
-		} finally {
-			if(conn != null)conn.close();
-			if(pstmt != null)pstmt.close();
-		}
-		
 	}
-	
-	
 }
-
-
