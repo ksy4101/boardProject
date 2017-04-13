@@ -3,9 +3,9 @@ package vo;
 public class ReplyVO {
 	private int reNo;
 	private int artNO;
-	private int memId;
-	private int reContent;
-	private int reDate;
+	private String memId;
+	private String reContent;
+	private String reDate;
 	
 
 	public ReplyVO() {
@@ -13,9 +13,7 @@ public class ReplyVO {
 		
 	}
 
-	
-	
-	public ReplyVO(int reNo, int artNO, int memId, int reContent, int reDate) {
+	public ReplyVO(int reNo, int artNO, String memId, String reContent, String reDate) {
 		super();
 		this.reNo = reNo;
 		this.artNO = artNO;
@@ -24,7 +22,6 @@ public class ReplyVO {
 		this.reDate = reDate;
 	}
 
-	
 
 	public int getReNo() {
 		return reNo;
@@ -46,39 +43,42 @@ public class ReplyVO {
 	}
 
 
-	public int getMemId() {
+	public String getMemId() {
 		return memId;
 	}
 
 
-	public void setMemId(int memId) {
+	public void setMemId(String memId) {
 		this.memId = memId;
 	}
 
 
-	public int getReContent() {
+	public String getReContent() {
 		return reContent;
 	}
 
 
-	public void setReContent(int reContent) {
+	public void setReContent(String reContent) {
 		this.reContent = reContent;
 	}
 
 
-	public int getReDate() {
+	public String getReDate() {
 		return reDate;
 	}
 
 
-	public void setReDate(int reDate) {
+	public void setReDate(String reDate) {
 		this.reDate = reDate;
 	}
+	
 
 
 	@Override
 	public String toString() {
-		return "reply [reNo=" + reNo + ", artNO=" + artNO + ", memId=" + memId + ", reContent=" + reContent
+		return "ReplyVO [reNo=" + reNo + ", artNO=" + artNO + ", memId=" + memId + ", reContent=" + reContent
 				+ ", reDate=" + reDate + "]";
 	}
+
+	
 }
