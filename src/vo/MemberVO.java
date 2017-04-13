@@ -6,11 +6,11 @@ public class MemberVO {
 	private String jumin;
 	private String password;
 	private String name;
-	private String postNo;
+	private int postNo;
 	private String phone;
 	private String email;
 	private String memo;
-	private int grade;
+	private String grade;
 	private String address;
 	
 	
@@ -19,8 +19,8 @@ public class MemberVO {
 	}
 
 
-	public MemberVO(String memId, String jumin, String password, String name, String postNo, String phone, String email,
-			String memo, int grade, String address) {
+	public MemberVO(String memId, String jumin, String password, String name, int postNo, String phone, String email,
+			String memo, String grade, String address) {
 		super();
 		this.memId = memId;
 		this.jumin = jumin;
@@ -33,8 +33,6 @@ public class MemberVO {
 		this.grade = grade;
 		this.address = address;
 	}
-	
-	
 
 
 	public String getMemId() {
@@ -77,12 +75,12 @@ public class MemberVO {
 	}
 
 
-	public String getPostNo() {
+	public int getPostNo() {
 		return postNo;
 	}
 
 
-	public void setPostNo(String postNo) {
+	public void setPostNo(int postNo) {
 		this.postNo = postNo;
 	}
 
@@ -117,12 +115,12 @@ public class MemberVO {
 	}
 
 
-	public int getGrade() {
+	public String getGrade() {
 		return grade;
 	}
 
 
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
@@ -143,6 +141,8 @@ public class MemberVO {
 				+ ", postNo=" + postNo + ", phone=" + phone + ", email=" + email + ", memo=" + memo + ", grade=" + grade
 				+ ", address=" + address + "]";
 	}
+
+
 	
 	
 	
