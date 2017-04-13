@@ -1,6 +1,6 @@
 package vo;
 
-public class replyVO {
+public class ReplyVO {
 	private int reNo;
 	private int artNO;
 	private int memId;
@@ -8,14 +8,14 @@ public class replyVO {
 	private int reDate;
 	
 
-	public replyVO() {
+	public ReplyVO() {
 		super();
 		
 	}
 
 	
 	
-	public replyVO(int reNo, int artNO, int memId, int reContent, int reDate) {
+	public ReplyVO(int reNo, int artNO, int memId, int reContent, int reDate) {
 		super();
 		this.reNo = reNo;
 		this.artNO = artNO;

@@ -1,5 +1,5 @@
 package dao;
 
-public class replayDAO {
+public class ReplayDAO {
 
 }
