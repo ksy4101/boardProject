@@ -161,9 +161,9 @@ public class ReplyDAO {
 			
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("select re_content, mem_id,re_date		");
+			sql.append("select re_no,art_no,re_content, mem_id,re_date		");
 			sql.append("from reply								");
-			sql.append("where memId ?							");
+			sql.append("where memId = ?							");
 			sql.append("order by re_date DESC					");
 			
 			pstmt = conn.prepareStatement(sql.toString());
@@ -172,9 +172,11 @@ public class ReplyDAO {
 			
 			while(rs.next()) {
 				ReplyVO reply = new ReplyVO();
-				reply.setReContent(rs.getString(1));
-				memId = rs.getString(2);
-				reply.setReDate(rs.getString(3));
+				reply.setReNo(rs.getInt(1));
+				reply.setReNo(rs.getInt(2));
+				reply.setReContent(rs.getString(3));
+				memId = rs.getString(4);
+				reply.setReDate(rs.getString(5));
 				replys.add(reply);
 			}
 		}catch (Exception e) {
@@ -208,9 +210,9 @@ public class ReplyDAO {
 				
 				StringBuilder sql = new StringBuilder();
 				
-				sql.append("select re_content, mem_id,re_date		");
+				sql.append("select re_no,art_no,re_content, mem_id,re_date		");
 				sql.append("from reply								");
-				sql.append("where artNo ?							");
+				sql.append("where artNo = ?							");
 				sql.append("order by re_date desc					");
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setInt(1, artNo);
@@ -218,9 +220,11 @@ public class ReplyDAO {
 				
 				while(rs.next()) {
 					ReplyVO reply = new ReplyVO();
-					reply.setReContent(rs.getString(1));
-					reply.setMemId(rs.getString(2));
-					reply.setReDate(rs.getString(3));
+					reply.setReNo(rs.getInt(1));
+					artNo = rs.getInt(2);
+					reply.setReContent(rs.getString(3));
+					reply.setMemId(rs.getString(4));
+					reply.setReDate(rs.getString(5));
 					replys.add(reply);
 				}
 			} catch (Exception e) {
