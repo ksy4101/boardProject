@@ -209,7 +209,7 @@ public class ArticleDAO {
 	         conn = DBConn.getConnection();
 
 	         StringBuilder sql = new StringBuilder();
-	         sql.append("select art_no, subject,    mem_id, write_date                  ");
+	         sql.append("select art_no, subject, mem_id, to_char(write_date, 'YYYY/MM/DD')                  ");
 	         sql.append("from article                                                    ");
 	         sql.append("where                                                           ");
 
