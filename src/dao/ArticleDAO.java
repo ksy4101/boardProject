@@ -20,8 +20,8 @@ public class ArticleDAO {
 			conn = DBConn.getConnection();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into article(art_no, mem_id, board_no, subject, content, write_date)");
-			sql.append("values(ART_NO_SEQ.nextval, ?, ?, ?, ?, sysdate)");
+			sql.append("insert into article(art_no, mem_id, board_no, subject, content, write_date)			");
+			sql.append("values(ART_NO_SEQ.nextval, ?, ?, ?, ?, sysdate)													");
 			ps = conn.prepareStatement(sql.toString());
 
 			ps.setString(1, art.getMemId());
@@ -54,9 +54,9 @@ public class ArticleDAO {
 			conn = DBConn.getConnection();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("update article    ");
-			sql.append("set subject = ? , content = ?    ");
-			sql.append("where board_no = ? and art_no = ?");
+			sql.append("update article    									");
+			sql.append("set subject = ? , content = ?    				");
+			sql.append("where board_no = ? and art_no = ?		");
 			ps = conn.prepareStatement(sql.toString());
 
 			ps.setString(1, art.getSubject());
@@ -89,8 +89,8 @@ public class ArticleDAO {
 			conn = DBConn.getConnection();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("delete from reply                     ");
-			sql.append("where art_no = ?                     ");
+			sql.append("delete from reply						");
+			sql.append("where art_no = ?						");
 			pstmt = conn.prepareStatement(sql.toString());
 
 			pstmt.setInt(1, articleNo);
@@ -100,7 +100,7 @@ public class ArticleDAO {
 
 			sql.delete(0, sql.length());
 
-			sql.append("delete from article                                       ");
+			sql.append("delete from article                                 ");
 			sql.append("where art_no = ?                                    ");
 			pstmt = conn.prepareStatement(sql.toString());
 
@@ -136,9 +136,9 @@ public class ArticleDAO {
 			st = conn.createStatement();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select art_no, mem_id, subject, to_char(write_date, 'YYYY/MM/DD')  ");
-			sql.append("from article    ");
-			sql.append("where art_no = ?    ");
+			sql.append("select art_no, mem_id, subject, to_char(write_date, 'YYYY/MM/DD')  			");
+			sql.append("from article    																								");
+			sql.append("where art_no = ?    																						");
 			rs = st.executeQuery(sql.toString());
 
 			while (rs.next()) {
@@ -177,9 +177,9 @@ public class ArticleDAO {
 			conn = DBConn.getConnection();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select art_no, mem_id, subject, content, write_date  ");
-			sql.append("from article    ");
-			sql.append("where art_no = ?, board_no = ?    ");
+			sql.append("select art_no, mem_id, subject, content, write_date  		");
+			sql.append("from article    																");
+			sql.append("where art_no = ?, board_no = ?    									");
 			ps = conn.prepareStatement(sql.toString());
 
 			ps.setInt(1, art.getBoardNo());
@@ -215,9 +215,9 @@ public class ArticleDAO {
 			conn = DBConn.getConnection();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select art_no, subject,    mem_id, write_date                  ");
-			sql.append("from article                                                    ");
-			sql.append("where                                                           ");
+			sql.append("select art_no, subject, mem_id, to_char(write_date, 'YYYY/MM/DD')                  ");
+			sql.append("from article                                                   												 	");
+			sql.append("where                                                           													");
 
 			if (keyfield.equals("제목")) {
 				sql.append("subject = ?                                                    ");
