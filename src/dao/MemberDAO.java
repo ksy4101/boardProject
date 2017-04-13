@@ -58,7 +58,7 @@ public class MemberDAO {
 	}
 	
 	//회원 로그인
-	public String selectLogin(String id, String password){
+	public String selectLogin(String id, String password) throws SQLException{
 		
 		MemberVO member = this.selectMember(id);//입력한 아이디에 해당하는 객체
 		
@@ -67,6 +67,43 @@ public class MemberDAO {
 		}
 		else{//같지 않은경우
 			return null;//null 반환
+		}
+	}
+	
+	//id, 이름, 주민번호 체크 하는 메소드
+	public String checkData(String id, String name, String jumin) throws SQLException{
+		MemberVO member = this.selectMember(id);//입력한 아이디에 해당하는 객체
+		if(member.getPassword().equals(jumin) && member.getName().equals(name)){
+			return id;
+		}
+		return null;
+	}
+	
+	//비밀번호 변경 - 실제로 변경하는 메소드
+	public void updatePassword(String id, String password){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConn.getConnection();//커넥션 연결
+			StringBuilder sql = new StringBuilder();//쿼리문 받을 변수 선언
+			sql.append("UPDATE member ");//쿼리문 입력
+			sql.append("set PASSWORD = ? ");//쿼리문 입력
+			sql.append("where MEM_ID = ? ");//쿼리문 입력
+			pstmt = conn.prepareStatement(sql.toString());//쿼리문 입력
+			
+			pstmt.setString(1, id);//입력받은 id값 세팅
+			
+			pstmt.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	}
 	
