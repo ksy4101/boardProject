@@ -57,6 +57,7 @@ public class MemberDAO {
 		return null;
 	}
 	
+	//전체 회원 조회
 	public Vector<Vector<Object>> selectMemberList() throws SQLException {
 		Vector<Vector<Object>> mems = new Vector<Vector<Object>>();
 		Connection conn = null;
