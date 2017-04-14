@@ -11,7 +11,7 @@ import vo.ArticleVO;
 
 public class ArticleDAO {
 
-	// 게시글 등록
+	// 게시 글 등록
 	public void insertArticle(ArticleVO art) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -45,7 +45,7 @@ public class ArticleDAO {
 
 	}
 
-	// 게시글 수정
+	// 게시 글 수정
 	public void updateArticle(ArticleVO art) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -79,7 +79,7 @@ public class ArticleDAO {
 		}
 	}
 
-	// 게시글 삭제
+	// 게시 글 삭제
 	public void deleteArticle(int articleNo) throws SQLException {
 
 		Connection conn = null;
@@ -126,7 +126,7 @@ public class ArticleDAO {
 
 	}
 
-	// 게시글 목록 조회
+	// 게시 글 목록조회
 	public Vector<Vector<Object>> selectAllArticle(int boardNo) throws SQLException {
 		Vector<Vector<Object>> art = new Vector<>();
 		Connection conn = null;
@@ -173,7 +173,7 @@ public class ArticleDAO {
 		return art;
 	}
 
-	// 게시글 상세 조회
+	// 게시 글 상세조회
 	public ArticleVO selectArticle(int artNo) throws SQLException {
 		ArticleVO art = new ArticleVO();
 		Connection conn = null;
@@ -215,7 +215,7 @@ public class ArticleDAO {
 		return art;
 	}
 
-	// 게시글 검색
+	// 게시 글 검색
 	public Vector<Vector<Object>> searchArticle(String keyfield, String keyword) throws SQLException {
 
 		Connection conn = null;
