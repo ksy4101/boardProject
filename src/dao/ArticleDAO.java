@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 import conn.DBConn;
@@ -61,6 +60,8 @@ public class ArticleDAO {
 
 			ps.setString(1, art.getSubject());
 			ps.setString(2, art.getContent());
+			ps.setInt(3, art.getBoardNo());
+			ps.setInt(4, art.getArtNo());
 
 			ps.executeUpdate();
 
@@ -126,20 +127,24 @@ public class ArticleDAO {
 	}
 
 	// 게시글 목록 조회
-	public Vector<Vector<Object>> selectAllArticle() throws SQLException {
+	public Vector<Vector<Object>> selectAllArticle(int boardNo) throws SQLException {
 		Vector<Vector<Object>> art = new Vector<>();
 		Connection conn = null;
-		Statement st = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBConn.getConnection();
-			st = conn.createStatement();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select art_no, mem_id, subject, to_char(write_date, 'YYYY/MM/DD')  			");
+			sql.append("select art_no, subject, mem_id, to_char(write_date, 'YYYY/MM/DD')  			");
 			sql.append("from article    																								");
-			sql.append("where art_no = ?    																						");
-			rs = st.executeQuery(sql.toString());
+			sql.append("where board_no = ?    																					");
+			sql.append("order by write_date desc                  															");
+			pstmt = conn.prepareStatement(sql.toString());
+
+			pstmt.setInt(1, boardNo);
+
+			rs = pstmt.executeQuery(sql.toString());
 
 			while (rs.next()) {
 				Vector<Object> a = new Vector<Object>();
@@ -156,8 +161,8 @@ public class ArticleDAO {
 			try {
 				if (rs != null)
 					rs.close();
-				if (st != null)
-					st.close();
+				if (pstmt != null)
+					pstmt.close();
 				if (conn != null)
 					conn.close();
 			} catch (Exception e2) {
@@ -172,27 +177,35 @@ public class ArticleDAO {
 	public ArticleVO selectArticle(int artNo) throws SQLException {
 		ArticleVO art = new ArticleVO();
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			conn = DBConn.getConnection();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select art_no, mem_id, subject, content, write_date  		");
-			sql.append("from article    																");
-			sql.append("where art_no = ?, board_no = ?    									");
-			ps = conn.prepareStatement(sql.toString());
+			sql.append("select art_no, mem_id, subject, content, to_char(write_date, 'YYYY/MM/DD')  			");
+			sql.append("from article    																											");
+			sql.append("where art_no = ?																										");
+			pstmt = conn.prepareStatement(sql.toString());
 
-			ps.setInt(1, art.getBoardNo());
-			ps.setInt(2, art.getArtNo());
+			pstmt.setInt(1, artNo);
 
-			ps.executeUpdate();
+			rs = pstmt.executeQuery(sql.toString());
+
+			while (rs.next()) {
+				art.setArtNo(rs.getInt(1));
+				art.setMemId(rs.getString(2));
+				art.setSubject(rs.getString(3));
+				art.setContent(rs.getString(4));
+				art.setWriteDate(rs.getString(5));
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (ps != null)
-					ps.close();
+				if (pstmt != null)
+					pstmt.close();
 				if (conn != null)
 					conn.close();
 			} catch (Exception e2) {
