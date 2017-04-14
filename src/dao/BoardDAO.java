@@ -145,13 +145,13 @@ public class BoardDAO {
 
 	}
 
-	// 게시판 목록 조회
-	public List<BoardVO> selectAllBoard() throws SQLException {
+	// 게시판 목록조회
+	public List<Object> selectAllBoard() throws SQLException {
 
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Vector<BoardVO> board = new Vector<BoardVO>();
+		Vector<Object> board = new Vector<Object>();
 
 		try {
 
@@ -166,9 +166,7 @@ public class BoardDAO {
 			rs = stmt.executeQuery(sql.toString());
 
 			while (rs.next()) {
-				BoardVO bvo = new BoardVO();
-				bvo.setBoardName(rs.getString(1));
-				board.add(bvo);
+				board.add(rs.getString(1));
 			}
 
 		} catch (Exception e) {
