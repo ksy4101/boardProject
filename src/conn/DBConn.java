@@ -1,5 +1,6 @@
 package conn;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class DBConn {
 			e.printStackTrace();
 		}
 		
-		String url = "jdbc:oracle:thin:@192.168.40.67:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.40.59:1521:xe";
 		String user = "asd111";
 		String password = "java1234";
 		return DriverManager.getConnection(url,user,password);

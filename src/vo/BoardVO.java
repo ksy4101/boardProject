@@ -1,5 +1,6 @@
 package vo;
 
+
 public class BoardVO {
 	private int boardNo;
 	private String boardName;

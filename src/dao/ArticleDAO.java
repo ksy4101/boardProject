@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -128,7 +129,7 @@ public class ArticleDAO {
 
 	// 게시 글 목록조회
 	public Vector<Vector<Object>> selectAllArticle(int boardNo) throws SQLException {
-		Vector<Vector<Object>> art = new Vector<>();
+		Vector<Vector<Object>> art = new Vector<Vector<Object>>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -144,7 +145,7 @@ public class ArticleDAO {
 
 			pstmt.setInt(1, boardNo);
 
-			rs = pstmt.executeQuery(sql.toString());
+			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Vector<Object> a = new Vector<Object>();
@@ -152,6 +153,7 @@ public class ArticleDAO {
 				a.addElement(rs.getString(2));
 				a.addElement(rs.getString(3));
 				a.addElement(rs.getString(4));
+				a.addElement(false);
 				art.add(a);
 			}
 
@@ -190,7 +192,7 @@ public class ArticleDAO {
 
 			pstmt.setInt(1, artNo);
 
-			rs = pstmt.executeQuery(sql.toString());
+			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				art.setArtNo(rs.getInt(1));
@@ -245,7 +247,7 @@ public class ArticleDAO {
 
 			pstmt.setString(1, "%" + keyword + "%");
 
-			rs = pstmt.executeQuery(sql.toString());
+			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Vector<Object> art = new Vector<Object>();

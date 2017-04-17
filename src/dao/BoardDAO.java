@@ -1,15 +1,17 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import conn.DBConn;
 import vo.BoardVO;
+
 
 public class BoardDAO {
 
@@ -146,12 +148,12 @@ public class BoardDAO {
 	}
 
 	// 게시판 목록조회
-	public List<Object> selectAllBoard() throws SQLException {
+	public List<BoardVO> selectAllBoard() throws SQLException {
 
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Vector<Object> board = new Vector<Object>();
+		ArrayList<BoardVO> boards = new ArrayList<BoardVO>();
 
 		try {
 
@@ -160,13 +162,16 @@ public class BoardDAO {
 			stmt = conn.createStatement();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select board_name								");
+			sql.append("select board_no, board_name								");
 			sql.append("from board 											");
 			sql.append("order by board_name asc						");
 			rs = stmt.executeQuery(sql.toString());
 
 			while (rs.next()) {
-				board.add(rs.getString(1));
+				 BoardVO board = new BoardVO();
+				 board.setBoardNo(rs.getInt(1));
+				 board.setBoardName(rs.getString(2));
+				 boards.add(board);				 
 			}
 
 		} catch (Exception e) {
@@ -187,7 +192,7 @@ public class BoardDAO {
 			}
 		}
 
-		return board;
+		return boards;
 
 	}
 

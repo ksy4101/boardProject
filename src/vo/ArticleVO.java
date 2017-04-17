@@ -1,5 +1,6 @@
 package vo;
 
+
 public class ArticleVO {
 
 	private int boardNo;
