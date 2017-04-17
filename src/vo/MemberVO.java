@@ -20,6 +20,20 @@ public class MemberVO {
 
 
 	public MemberVO(String memId, String jumin, String password, String name, int postNo, String phone, String email,
+			String memo, String address) {
+		super();
+		this.memId = memId;
+		this.jumin = jumin;
+		this.password = password;
+		this.name = name;
+		this.postNo = postNo;
+		this.phone = phone;
+		this.email = email;
+		this.memo = memo;
+		this.address = address;
+	}
+	
+	public MemberVO(String memId, String jumin, String password, String name, int postNo, String phone, String email,
 			String memo, String grade, String address) {
 		super();
 		this.memId = memId;
