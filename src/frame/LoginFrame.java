@@ -73,7 +73,7 @@ public class LoginFrame extends JFrame {
 						}
 						else{//아이디와 비밀번호가 모두 일치하는 경우
 							setVisible(false);
-							//게시판으로 가버렷!
+							//게시판 프레임 호출 로그인 프레임을 가지고 가게 만듬
 						}
 					}
 				} catch (SQLException e1) {
@@ -111,5 +111,9 @@ public class LoginFrame extends JFrame {
 		
 		
 		setVisible(true);
+	}
+	
+	public MemberVO getLogin(){
+		return login;
 	}
 }

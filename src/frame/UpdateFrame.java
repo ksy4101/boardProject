@@ -45,15 +45,12 @@ public class UpdateFrame extends JFrame {
 	private String firstPhone;
 	private String lastEmail;
 
-	public UpdateFrame() {
+	public UpdateFrame(LoginFrame login) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		try {
-			member = dao.selectLogin("1111", "1111");
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		//게시판 프레임에서 멤버의 정보를 가져오는 기능 추가
+		
+		member = login.getLogin();
 
 		JPanel panel = new JPanel();
 		setBounds(100, 100, 560, 590);
@@ -262,7 +259,14 @@ public class UpdateFrame extends JFrame {
 		JButton button = new JButton("\uD68C\uC6D0\uD0C8\uD1F4");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// 회원 탈퇴 부분
+				
+				try {
+					dao.deleteMember(member.getMemId());
+					dispose();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		button.setFont(new Font("함초롬바탕", Font.PLAIN, 18));
