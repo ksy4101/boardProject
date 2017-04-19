@@ -18,7 +18,6 @@ public class MemberVO {
 		super();
 	}
 
-
 	public MemberVO(String memId, String jumin, String password, String name, int postNo, String phone, String email,
 			String memo, String address) {
 		super();

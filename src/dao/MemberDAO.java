@@ -364,13 +364,13 @@ public class MemberDAO {
 	         conn = DBConn.getConnection();
 
 	         StringBuilder sql = new StringBuilder();
-	         sql.append("{call removeMember(?)} ");
+	         sql.append("{call removeMember(?)}");
 
 	         cstmt = conn.prepareCall(sql.toString());
 
 	         cstmt.setString(1, id);
 
-	         cstmt.executeUpdate();
+	         cstmt.execute();
 	         
 
 	      } finally {

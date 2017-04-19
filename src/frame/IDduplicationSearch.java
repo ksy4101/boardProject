@@ -72,7 +72,7 @@ public class IDduplicationSearch extends JFrame {
 				else if(dupliMsg.getText().equals("중복된 아이디가 없습니다.")){
 					id = dao.selectDuplication(searchIDField.getText(),1);
 					if(id == null){
-						String p = "([a-z_0-9]{4,13})";
+						String p = "([a-z_0-9]{5,14})";
 						boolean b = Pattern.matches(p, searchIDField.getText());
 						if(b){
 							((InsertFrame) insert).setID(searchIDField.getText());

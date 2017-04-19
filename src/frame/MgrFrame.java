@@ -4,7 +4,6 @@ package frame;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -311,6 +310,7 @@ public class MgrFrame extends JFrame {
 		cancelbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// 회원 삭제
+				member = dao.selectMember(idField.getText());
 				idField.setText("");
 				password1Field.setText("");
 				password2Field.setText("");
@@ -327,7 +327,8 @@ public class MgrFrame extends JFrame {
 				memoArea.setText("");
 				deungeopBox.setSelectedIndex(0);
 				try {
-					//dao.deleteMember(member.getMemId());//삭제 메소드
+					dao.deleteMember(member.getMemId());//삭제 메소드
+					//새로고침
 					rowData.clear();// 2차원 벡터 초기화
 					for (int i = dm.getRowCount() - 1; i >= 0; i--) {
 						dm.removeRow(i);// 입력받을 디폴트테이블모델 초기화

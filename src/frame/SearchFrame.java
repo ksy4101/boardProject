@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import java.awt.Font;
 
 public class SearchFrame extends JFrame {
 
@@ -48,11 +49,11 @@ public class SearchFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("\uC774\uB984");
-		lblNewLabel.setBounds(68, 44, 72, 15);
+		lblNewLabel.setBounds(40, 44, 100, 15);
 		contentPane.add(lblNewLabel);
 
 		JLabel label = new JLabel("\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638");
-		label.setBounds(68, 69, 72, 15);
+		label.setBounds(40, 69, 100, 15);
 		contentPane.add(label);
 
 		idNametxt = new JTextField();
@@ -71,11 +72,11 @@ public class SearchFrame extends JFrame {
 		contentPane.add(label_1);
 
 		label_2 = new JLabel("\uC774\uB984");
-		label_2.setBounds(68, 179, 72, 15);
+		label_2.setBounds(40, 179, 100, 15);
 		contentPane.add(label_2);
 
 		label_3 = new JLabel("\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638");
-		label_3.setBounds(68, 204, 72, 15);
+		label_3.setBounds(40, 204, 100, 15);
 		contentPane.add(label_3);
 
 		pwNametxt = new JTextField();
@@ -94,7 +95,7 @@ public class SearchFrame extends JFrame {
 		contentPane.add(label_4);
 
 		label_5 = new JLabel("\uC544\uC774\uB514");
-		label_5.setBounds(68, 151, 72, 15);
+		label_5.setBounds(40, 151, 100, 15);
 		contentPane.add(label_5);
 
 		pwIDtxt = new JTextField();
@@ -103,6 +104,7 @@ public class SearchFrame extends JFrame {
 		contentPane.add(pwIDtxt);
 
 		searchIDBtn = new JButton("ID \uCC3E\uAE30");
+		searchIDBtn.setFont(new Font("Gulim", Font.PLAIN, 12));
 		// 아이디 찾기 버튼을 눌렀을 경우 로직
 		searchIDBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -128,10 +130,11 @@ public class SearchFrame extends JFrame {
 				idJumintxt2.setText("");
 			}
 		});
-		searchIDBtn.setBounds(152, 97, 97, 21);
+		searchIDBtn.setBounds(125, 97, 136, 21);
 		contentPane.add(searchIDBtn);
 
 		searchPWBtn = new JButton("\uBE44\uBC00\uBC88\uD638 \uCC3E\uAE30");
+		searchPWBtn.setFont(new Font("굴림", Font.PLAIN, 12));
 		// 패스워드 찾기 버튼을 눌렀을 경우 로직
 		searchPWBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -161,10 +164,11 @@ public class SearchFrame extends JFrame {
 				}
 			}
 		});
-		searchPWBtn.setBounds(152, 231, 109, 21);
+		searchPWBtn.setBounds(125, 231, 136, 21);
 		contentPane.add(searchPWBtn);
 
 		button = new JButton("\uCDE8\uC18C");
+		button.setFont(new Font("Gulim", Font.PLAIN, 12));
 		// 취소하기 버튼을 눌렀을 경우 로직
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,6 +180,7 @@ public class SearchFrame extends JFrame {
 		contentPane.add(button);
 
 		button_1 = new JButton("\uCDE8\uC18C");
+		button_1.setFont(new Font("Gulim", Font.PLAIN, 12));
 		// 취소하기 버튼을 눌렀을 경우 로직
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -183,7 +188,7 @@ public class SearchFrame extends JFrame {
 				dispose();// 현재창 종료
 			}
 		});
-		button_1.setBounds(261, 97, 97, 21);
+		button_1.setBounds(273, 97, 109, 21);
 		contentPane.add(button_1);
 
 		pwJumintxt2 = new JPasswordField(7);

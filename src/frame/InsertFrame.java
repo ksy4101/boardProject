@@ -119,7 +119,7 @@ public class InsertFrame extends JFrame {
 		panel.add(nameField);
 		nameField.setColumns(10);
 
-		JLabel label_7 = new JLabel("\uD55C\uAE00,\uC601\uBB38");
+		JLabel label_7 = new JLabel("\uD55C\uAE00");
 		label_7.setBounds(231, 171, 93, 23);
 		panel.add(label_7);
 

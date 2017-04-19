@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 
 import dao.MemberDAO;
 import vo.MemberVO;
+import javax.swing.JPasswordField;
+import java.awt.Font;
 
 public class LoginFrame extends JFrame {
 
@@ -22,6 +24,7 @@ public class LoginFrame extends JFrame {
 	private JTextField idField;
 	private JTextField pwField;
 	private MemberVO login = new MemberVO();
+	private JPasswordField passwordField;
 
 	public LoginFrame(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//x버튼을 누를경우 프로그램 종료
@@ -32,10 +35,12 @@ public class LoginFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 10));
 		lblNewLabel.setBounds(67, 96, 67, 15);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("PASSWORD");
+		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 10));
 		lblNewLabel_1.setBounds(67, 135, 67, 15);
 		contentPane.add(lblNewLabel_1);
 		
@@ -44,7 +49,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(idField);
 		idField.setColumns(10);
 		
-		pwField = new JTextField();
+		pwField = new JPasswordField();
 		pwField.setBounds(146, 132, 116, 21);
 		contentPane.add(pwField);
 		pwField.setColumns(10);
@@ -104,7 +109,7 @@ public class LoginFrame extends JFrame {
 		searchBtn.setBounds(156, 164, 222, 23);
 		contentPane.add(searchBtn);
 		
+		
 		setVisible(true);
 	}
-	
 }
