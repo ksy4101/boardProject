@@ -80,7 +80,7 @@ public class IDduplicationSearch extends JFrame {
 							dispose();//정보 전달이후 현재창 종료
 						}
 						else{
-							JOptionPane.showMessageDialog(null, "아이디는 영어 소문자와 숫자의 조합으로 4~13자리만 입력 가능합니다.");
+							JOptionPane.showMessageDialog(null, "아이디는 영어 소문자와 숫자의 조합으로 5~14자리만 입력 가능합니다.");
 						}					
 					}
 					else{
