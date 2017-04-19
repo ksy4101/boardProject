@@ -93,8 +93,17 @@ public class PostVO {
 
 	@Override
 	public String toString() {
-		return "PostVO [postNo=" + postNo + ", sido=" + sido + ", gugun=" + gugun + ", dong=" + dong + ", bunzi="
-				+ bunzi + ", zipcode=" + zipcode + ", ri=" + ri + ", bldg=" + bldg + "]";
+		if(bunzi == null){
+			bunzi = "";
+		}
+		if(ri == null){
+			ri = "";
+		}
+		if(bldg == null){
+			bldg = "";
+		}
+		return sido + " " + gugun + " " + dong + " " + bunzi + " " + ri + " " + bldg + " 우편번호 " + zipcode;
+		
 	}
 	
 	
