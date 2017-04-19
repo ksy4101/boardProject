@@ -1,4 +1,4 @@
-package vo;
+package dao;
 
 public class ReplyVO {
 	private int reNo;

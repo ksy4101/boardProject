@@ -62,7 +62,7 @@ public class ReplyDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("update  reply                    												");
 			sql.append("set re_content = ?																");
-			sql.append("where re_no = ?															");
+			sql.append("where re_no = ?																	");
 			pstmt = conn.prepareStatement(sql.toString());
 			
 			pstmt.setString(1, reply.getReContent());
@@ -125,7 +125,7 @@ public class ReplyDAO {
 				conn = DBConn.getConnection();
 				
 				StringBuilder sql = new StringBuilder();
-				sql.append("delete from reply				");
+				sql.append("delete from reply					");
 				sql.append("where mem_id = ?					");
 				pstmt = conn.prepareStatement(sql.toString());
 				
@@ -162,9 +162,9 @@ public class ReplyDAO {
 			StringBuilder sql = new StringBuilder();
 			
 			sql.append("select re_no,art_no,re_content, mem_id,re_date		");
-			sql.append("from reply								");
-			sql.append("where memId = ?							");
-			sql.append("order by re_date DESC					");
+			sql.append("from reply											");
+			sql.append("where memId = ?										");
+			sql.append("order by re_date DESC								");
 			
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, memId);
