@@ -18,7 +18,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
 import dao.ReplyDAO;
-
+import vo.MemberVO;
 import vo.ReplyVO;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -32,8 +32,6 @@ public class ReplyPanel extends JPanel {
 	private int x = 0;
 	private int y = 0;
 	private String p;
-	private String grade = "1";
-	private String memId = "5555";
 	private ReplyListpanel replyListpanel;
 	private JTextArea DBreplytext, insertReplyText;
 	private JLabel insertReplyId, insertReplyDate, replyInsert;
@@ -41,20 +39,18 @@ public class ReplyPanel extends JPanel {
 	private JPanel replyListPanel, replyPanel, replyinsert;
 	private JButton allreplyDeletebutton, myinsertBtn;
 	private JScrollPane pane;
+	private MemberVO member;
 
 	ReplyTextLimit limit = new ReplyTextLimit(99);
 	// 클래스에서 가져온다. 범위는 (99) 이유: 한글은 1개가 3바이트이므로 re_content가 300이여야 100지를 쓸수있으므로
 	// 99로 했다. 100은 303까지 이용한
 
-	private void memIdfix() {
-
-	}
 
 	// 내 댓글조회
 	private void MyRelyList() {
 		try {
 			ReplyDAO dao = new ReplyDAO();
-			List<ReplyVO> replys = dao.selectMyReply(artNo, memId); // memid,artNo로
+			List<ReplyVO> replys = dao.selectMyReply(artNo, member.getMemId()); // memid,artNo로
 																	// 댓글들 조회
 			for (int i = 0; i < replys.size(); i++) { // for문으로 댓글들 갯수만큼 증가시킴
 				ReplyVO reply = replys.get(i); // dao에서 값을불러와 reply에 저장
@@ -252,13 +248,13 @@ public class ReplyPanel extends JPanel {
 
 				replyPanel.add(deleteReplybtn);
 
-				if (reply.getMemId().equals(memId)) { // 만약 db에 저장된 댓글의 아이디와
+				if (reply.getMemId().equals(member.getMemId())) { // 만약 db에 저장된 댓글의 아이디와
 														// 로그인된 아이디가 같으면 수정 삭제
 														// 가능
 
 					updateReplyBtn.setVisible(true);
 					deleteReplybtn.setVisible(true);
-				} else if (!(reply.getMemId().equals(memId)) && grade.equals("1")) {
+				} else if (!(reply.getMemId().equals(member.getMemId())) && member.getGrade().equals("1")) {
 
 					// 만약 db에 저장된 댓글의 아이디와 로그인된 아이디가 다르지만 관리자이면 삭제만 가능
 					DBreplytext.setEditable(false);
@@ -288,7 +284,8 @@ public class ReplyPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ReplyPanel(int artNo) {
+	public ReplyPanel(MemberVO member, int artNo) {
+		this.member = member;
 		this.artNo = artNo; // boardFrame에서 게시글 번호를 가져온다.
 
 		setLayout(null);
@@ -388,7 +385,7 @@ public class ReplyPanel extends JPanel {
 					}
 
 					ReplyDAO dao = new ReplyDAO();
-					dao.insertReply(new ReplyVO(reNo, artNo, memId, reContent)); // 4를
+					dao.insertReply(new ReplyVO(reNo, artNo, member.getMemId(), reContent)); // 4를
 																					// 가지고
 					insertReplyText.setText("");//빈공간 처리																	// 등록한다.
 
@@ -420,7 +417,7 @@ public class ReplyPanel extends JPanel {
 					}
 
 					ReplyDAO dao = new ReplyDAO();
-					dao.insertReply(new ReplyVO(reNo, artNo, memId, reContent));// 4를
+					dao.insertReply(new ReplyVO(reNo, artNo, member.getMemId(), reContent));// 4를
 																				// 가지고// 등록한다.
 					insertReplyText.setText("");	//빈공간 처리										
 

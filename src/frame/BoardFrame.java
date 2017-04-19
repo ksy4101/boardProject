@@ -58,6 +58,8 @@ public class BoardFrame extends JFrame/* implements ActionListener, ListSelectio
 		
 		card.show(rightPanel, "main");
 		
+		
+		
 		setVisible(true);
 
 	}

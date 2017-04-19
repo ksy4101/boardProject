@@ -97,8 +97,8 @@ public class UpdateArticleJPanel extends JPanel {
          JButton replyB = new JButton("댓글보기");
          replyB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               // 댓글보기 버튼
-
+            	BoardFrame.rightPanel.add("reply", new ReplyPanel(member,artNo));
+            	BoardFrame.card.show(BoardFrame.rightPanel, "reply");
             }
          });
          replyB.setBounds(931, 929, 97, 23);
