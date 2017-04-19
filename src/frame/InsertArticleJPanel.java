@@ -18,26 +18,18 @@ import javax.swing.SwingConstants;
 
 import dao.ArticleDAO;
 import vo.ArticleVO;
+import vo.MemberVO;
 
 
 //게시글 등록 화면
 public class InsertArticleJPanel extends JPanel {
 
-//	private JTextField textField, textField_1, textField_2;
 	// 제목, 아이디, 작성일자 TextField변수선언
 	private JTextField subTF, memTF, dateTF;
-	
-//	private int row = -1; // 마우스클릭이벤트 변수
 
-	private String id = "2222";
-//	private int boardNo = 4;
-//	private JButton btn  = new JButton();
 
-	/**
-	 * Create the panel.
-	 */
-	public InsertArticleJPanel(int boardNo) {
-		
+	public InsertArticleJPanel(MemberVO member, int boardNo) {
+		String id = member.getMemId();
 		setLayout(null);
 		setBounds(499, 0, 1285, 962);
 		
@@ -113,7 +105,7 @@ public class InsertArticleJPanel extends JPanel {
 
 							JOptionPane.showMessageDialog(insertB, "등록되었습니다.");
 							
-							BoardFrame.rightPanel.add("article", new ArticlePanel(boardNo));
+							BoardFrame.rightPanel.add("article", new ArticlePanel(member,boardNo));
 							BoardFrame.card.show(BoardFrame.rightPanel, "article");
 						}
 					}

@@ -45,12 +45,11 @@ public class UpdateFrame extends JFrame {
 	private String firstPhone;
 	private String lastEmail;
 
-	public UpdateFrame(LoginFrame login) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public UpdateFrame(MemberVO login) {
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		//게시판 프레임에서 멤버의 정보를 가져오는 기능 추가
 		
-		member = login.getLogin();
+		member = login;
 
 		JPanel panel = new JPanel();
 		setBounds(100, 100, 560, 590);

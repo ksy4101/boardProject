@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import dao.BoardDAO;
 import vo.BoardVO;
+import vo.MemberVO;
 
 //게시판 관리
 public class ModifyPanel extends JPanel {
@@ -31,7 +32,7 @@ public class ModifyPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ModifyPanel() {
+	public ModifyPanel(MemberVO member) {
 		setBounds(0, 0, 1284, 962);
 		setLayout(null);
 
@@ -63,10 +64,10 @@ public class ModifyPanel extends JPanel {
 				}
 				addBoardTF.revalidate();
 
-				BoardFrame.rightPanel.add("modify", new ModifyPanel());
+				BoardFrame.rightPanel.add("modify", new ModifyPanel(member));
 				BoardFrame.card.show(BoardFrame.rightPanel, "modify");
 
-				BoardFrame.leftPanel.add("left", new LeftBoardPanel());
+				BoardFrame.leftPanel.add("left", new LeftBoardPanel(member));
 				BoardFrame.card.show(BoardFrame.leftPanel, "left");
 			}
 		});
@@ -89,10 +90,10 @@ public class ModifyPanel extends JPanel {
 
 				JOptionPane.showMessageDialog(DeleteBoardBtn, "삭제되었습니다");
 
-				BoardFrame.rightPanel.add("modify", new ModifyPanel());
+				BoardFrame.rightPanel.add("modify", new ModifyPanel(member));
 				BoardFrame.card.show(BoardFrame.rightPanel, "modify");
 
-				BoardFrame.leftPanel.add("left", new LeftBoardPanel());
+				BoardFrame.leftPanel.add("left", new LeftBoardPanel(member));
 				BoardFrame.card.show(BoardFrame.leftPanel, "left");
 			}
 		});
@@ -100,11 +101,11 @@ public class ModifyPanel extends JPanel {
 		DeleteBoardBtn.setBounds(934, 773, 161, 59);
 		add(DeleteBoardBtn);
 
-		ShowBoard();
+		ShowBoard(member);
 
 	}
 
-	public void ShowBoard() {
+	public void ShowBoard(MemberVO member) {
 
 		try {
 			List<BoardVO> boardList = dao.selectAllBoard();
@@ -169,7 +170,7 @@ public class ModifyPanel extends JPanel {
 								e1.printStackTrace();
 							}
 						}
-						BoardFrame.leftPanel.add("left", new LeftBoardPanel());
+						BoardFrame.leftPanel.add("left", new LeftBoardPanel(member));
 						BoardFrame.card.show(BoardFrame.leftPanel, "left");
 					}
 				});

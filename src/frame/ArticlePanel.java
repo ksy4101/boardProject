@@ -5,8 +5,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 import javax.swing.DefaultCellEditor;
@@ -20,12 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import dao.ArticleDAO;
+import vo.MemberVO;
 
 
 public class ArticlePanel extends JPanel {
@@ -43,12 +41,14 @@ public class ArticlePanel extends JPanel {
 	private String keyField;
 	JScrollPane scrollPane_1 = new JScrollPane();
 	private int boardNo;
+	private MemberVO member;
 
 	/**
 	 * Create the panel.
 	 */
-	public ArticlePanel(int boardNo) {
+	public ArticlePanel(MemberVO member,int boardNo) {
 		this.boardNo = boardNo;
+		this.member = member;
 		setBounds(0, 0, 1284, 962);
 		setLayout(null);
 
@@ -128,7 +128,7 @@ public class ArticlePanel extends JPanel {
 				// 게시글 목록 화면에서 글쓰기 버튼 클릭 했을떄 글쓰는 창으로 화면전환
 				Object t = e.getSource();
 				if (t == writeArticleBtn) {
-					BoardFrame.rightPanel.add("insertArticle", new InsertArticleJPanel(boardNo));
+					BoardFrame.rightPanel.add("insertArticle", new InsertArticleJPanel(member, boardNo));
 					BoardFrame.card.show(BoardFrame.rightPanel, "insertArticle");
 				}
 			}
@@ -139,6 +139,12 @@ public class ArticlePanel extends JPanel {
 		deleteArticleBtn.setFont(new Font("굴림", Font.PLAIN, 20));
 		deleteArticleBtn.setBounds(1074, 127, 128, 36);
 		add(deleteArticleBtn);
+		if(member.getGrade().equals("0")){
+			deleteArticleBtn.setEnabled(false);
+		}
+		else if(member.getGrade().equals("1")){
+			deleteArticleBtn.setEnabled(true);
+		}
 		// 선택삭제 버튼 리스너
 		deleteArticleBtn.addActionListener(new ActionListener() {
 
@@ -289,9 +295,8 @@ public class ArticlePanel extends JPanel {
 				
 				int row = articleTable.getSelectedRow();
 	            int articleNo = (Integer) articleList.get(row).elementAt(0);
-	            System.out.println("aricleNo : " + articleNo);
 
-	            BoardFrame.rightPanel.add("updateArticle", new UpdateArticleJPanel(articleNo, boardNo));
+	            BoardFrame.rightPanel.add("updateArticle", new UpdateArticleJPanel(member, articleNo, boardNo));
 	            BoardFrame.card.show(BoardFrame.rightPanel, "updateArticle");
 				
 			}

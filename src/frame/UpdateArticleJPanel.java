@@ -17,20 +17,22 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import dao.ArticleDAO;
+import dao.MemberDAO;
 import vo.ArticleVO;
+import vo.MemberVO;
 
 public class UpdateArticleJPanel extends JPanel {
    private JTextField subTF, memTF, dateTF;
 
    private int artNo;
    private ArticleDAO dao = new ArticleDAO();
+   private MemberDAO mdao = new MemberDAO();
    
 
    /**
     * Create the panel.
     */
-   public UpdateArticleJPanel(int artNo, int boardNo) {
-      System.out.println("call");
+   public UpdateArticleJPanel(MemberVO member, int artNo, int boardNo) {
 
       
       //this.artNo = artNo;
@@ -83,7 +85,7 @@ public class UpdateArticleJPanel extends JPanel {
          memTF.setBounds(710, 10, 227, 59);
          add(memTF);
          memTF.setColumns(10);
-         memTF.setText("작성자 아이디 받아오기"); // 작성자 아이디 받아와서 출력하기
+         memTF.setText(member.getMemId()); // 작성자 아이디 받아와서 출력하기
          memTF.setEditable(false);
 
          JTextArea contTA = new JTextArea();
@@ -103,6 +105,7 @@ public class UpdateArticleJPanel extends JPanel {
          add(replyB);
 
          JButton updateB = new JButton("수정");
+         updateB.setEnabled(false);
 
          updateB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -129,7 +132,7 @@ public class UpdateArticleJPanel extends JPanel {
                         
                         JOptionPane.showMessageDialog(updateB, "수정되었습니다.");
                         
-                        BoardFrame.rightPanel.add("article", new ArticlePanel(boardNo));
+                        BoardFrame.rightPanel.add("article", new ArticlePanel(member,boardNo));
                         BoardFrame.card.show(BoardFrame.rightPanel, "article");
                        }
                   } catch (Exception e2) {
@@ -142,6 +145,12 @@ public class UpdateArticleJPanel extends JPanel {
          add(updateB);
          
          JButton deleteB = new JButton("삭제");
+         deleteB.setEnabled(false);
+         String id = dao.selectArticle(artNo).getMemId();
+         if(member.getMemId().equals(id)){
+        	 updateB.setEnabled(true);
+        	 deleteB.setEnabled(true);
+         }
          deleteB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                //게시글 삭제 버튼
@@ -153,13 +162,13 @@ public class UpdateArticleJPanel extends JPanel {
                      dao.deleteArticle(artNoList);
                      JOptionPane.showMessageDialog(deleteB, "삭제되었습니다.");
                      
-                     BoardFrame.rightPanel.add("article", new ArticlePanel(boardNo));
+                     BoardFrame.rightPanel.add("article", new ArticlePanel(member,boardNo));
                           BoardFrame.card.show(BoardFrame.rightPanel, "article");
                   }
                   
                } else {
                   JOptionPane.showMessageDialog(deleteB, "취소되었습니다.");
-                  BoardFrame.rightPanel.add("article", new ArticlePanel(boardNo));
+                  BoardFrame.rightPanel.add("article", new ArticlePanel(member,boardNo));
                        BoardFrame.card.show(BoardFrame.rightPanel, "article");
                }
 

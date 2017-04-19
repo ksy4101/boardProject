@@ -72,6 +72,7 @@ public class LoginFrame extends JFrame {
 							JOptionPane.showMessageDialog(null,"ID와 비밀번호가 일치하지 않습니다.");
 						}
 						else{//아이디와 비밀번호가 모두 일치하는 경우
+							new BoardFrame(LoginFrame.this);
 							setVisible(false);
 							//게시판 프레임 호출 로그인 프레임을 가지고 가게 만듬
 						}
