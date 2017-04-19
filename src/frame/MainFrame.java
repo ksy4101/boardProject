@@ -1,5 +1,5 @@
 package frame;
-
+import java.util.regex.Pattern;
 
 public class MainFrame {
 
@@ -7,10 +7,11 @@ public class MainFrame {
 		// TODO Auto-generated method stub
 		
 		
-		//new LoginFrame();
-		//new InsertFrame();
-		new UpdateFrame();
+		new LoginFrame();
+		//new UpdateFrame();
 		//MemberDAO dao = new MemberDAO();
+		//new MgrFrame();
+
 		
 	}
 

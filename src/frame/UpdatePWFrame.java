@@ -1,5 +1,5 @@
 package frame;
-
+//비밀번호 변경 프레임
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
@@ -40,6 +41,15 @@ public class UpdatePWFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String pw1 = pw1Field.getText();
 				String pw2 = pw2Field.getText();
+				
+				String pwPattern = "^(?=.*[a-z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$";
+				boolean pwchk = Pattern.matches(pwPattern,pw1);
+				if(!pwchk){
+					JOptionPane.showMessageDialog(null, "비밀번호는 영문소문자,숫자,특수문자의 조합으로 8자리 이상 넣어주세요");
+					pw1 = "";
+					pw2 = "";
+				}
+				
 				if(!(pw1.equals(pw2)) || pw1.equals("")){
 					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
 				}
@@ -51,10 +61,10 @@ public class UpdatePWFrame extends JFrame {
 					else if(type == 2){
 						dao.updatePassword(((UpdateFrame) search).getID(), pw1);
 					}
-					
+					JOptionPane.showMessageDialog(null, "변경이 완료되었습니다.");
+					dispose();
 				}
-				JOptionPane.showMessageDialog(null, "변경이 완료되었습니다.");
-				dispose();
+
 			}
 		});
 		updateBtn.setBounds(91, 186, 97, 23);
