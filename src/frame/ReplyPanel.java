@@ -40,7 +40,7 @@ public class ReplyPanel extends JPanel {
 	private JButton allreplyDeletebutton, myinsertBtn;
 	private JScrollPane pane;
 	private MemberVO member;
-	private int height = 730;
+	private int height = 140;
 
 	ReplyTextLimit limit = new ReplyTextLimit(99);
 	// 클래스에서 가져온다. 범위는 (99) 이유: 한글은 1개가 3바이트이므로 re_content가 300이여야 100지를 쓸수있으므로
@@ -293,7 +293,7 @@ public class ReplyPanel extends JPanel {
 		setLayout(null);
 
 		setBackground(Color.WHITE);
-		//setBounds(0, 0, 1280, 980);
+		setBounds(0, 0, 1280, 980);
 
 		//////////////////////////////////////// 댓글 목록 조회
 		//////////////////////////////////////// ////////////////////////////////////////
@@ -307,7 +307,7 @@ public class ReplyPanel extends JPanel {
 		pane = new JScrollPane();
 		pane.setBounds(0, 0, 1280, 980);
 		add(pane);
-		replyListPanel.setPreferredSize(new Dimension(1280,3000)); // 사이즈 정보를 가지고 있는
+		replyListPanel.setPreferredSize(new Dimension(1280, 3000)); // 사이즈 정보를 가지고 있는
 																// 객체를 이용해 패널의
 																// 사이즈 지정
 
@@ -397,6 +397,7 @@ public class ReplyPanel extends JPanel {
 					replyListPanel.removeAll(); // 화면 초기화
 					replyListPanel.repaint(); // 화면 호출
 					y = 0; // y초기화
+					height += 140;
 					MyRelyList(); // 내댓글 보기 조회
 
 				} catch (SQLException e1) {
@@ -429,6 +430,7 @@ public class ReplyPanel extends JPanel {
 					replyListPanel.removeAll(); // 화면 초기화
 					replyListPanel.repaint(); // 화면 호출
 					y = 0; // y초기화
+					height += 160;
 					ReplyList(); // 전체 댓글보기 호출
 
 				} catch (SQLException e1) {
