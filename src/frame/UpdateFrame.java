@@ -344,7 +344,6 @@ public class UpdateFrame extends JFrame {
 					try {
 						dao.updateMember(member);
 						dispose();
-						new LoginFrame();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
