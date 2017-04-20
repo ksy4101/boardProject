@@ -31,7 +31,7 @@ public class LeftBoardPanel extends JPanel{
 	private List<BoardVO> boardList;
 	public static int index, boardNo;
 
-	public LeftBoardPanel(MemberVO member) {
+	public LeftBoardPanel(BoardFrame board, MemberVO member) {
 		System.out.println(member.getMemId());
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 500, 962);
@@ -64,6 +64,7 @@ public class LeftBoardPanel extends JPanel{
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new LoginFrame();
+				board.dispose();
 				//프레임을 꺼야함
 			}
 		});
@@ -90,7 +91,7 @@ public class LeftBoardPanel extends JPanel{
 				// TODO Auto-generated method stub
 				Object target = e.getSource();
 				if (target == boardMgrBtn) {
-					BoardFrame.rightPanel.add("modify", new ModifyPanel(member));
+					BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));
 					BoardFrame.card.show(BoardFrame.rightPanel, "modify");
 				}
 			}

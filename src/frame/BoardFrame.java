@@ -22,7 +22,7 @@ import dao.MemberDAO;
 import vo.BoardVO;
 import vo.MemberVO;
 
-public class BoardFrame extends JFrame/* implements ActionListener, ListSelectionListener */{
+public class BoardFrame extends JFrame{
 
 	private JPanel contentPane;
 	public static JPanel rightPanel = new JPanel();
@@ -46,7 +46,7 @@ public class BoardFrame extends JFrame/* implements ActionListener, ListSelectio
 		contentPane.add(leftPanel);
 		leftPanel.setLayout(card);
 		
-		leftPanel.add("left", new LeftBoardPanel(member));
+		leftPanel.add("left", new LeftBoardPanel(BoardFrame.this, member));
 		card.show(leftPanel, "left");
 
 

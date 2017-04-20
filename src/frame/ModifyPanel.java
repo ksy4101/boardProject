@@ -28,11 +28,13 @@ public class ModifyPanel extends JPanel {
 	private BoardDAO dao = new BoardDAO();
 	private JPanel AllBoardListPanel, BoardListPanel;
 	private int y = 10;
+	private BoardFrame board;
 
 	/**
 	 * Create the panel.
 	 */
-	public ModifyPanel(MemberVO member) {
+	public ModifyPanel(BoardFrame board, MemberVO member) {
+		this.board = board;
 		setBounds(0, 0, 1284, 962);
 		setLayout(null);
 
@@ -64,10 +66,10 @@ public class ModifyPanel extends JPanel {
 				}
 				addBoardTF.revalidate();
 
-				BoardFrame.rightPanel.add("modify", new ModifyPanel(member));
+				BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));
 				BoardFrame.card.show(BoardFrame.rightPanel, "modify");
 
-				BoardFrame.leftPanel.add("left", new LeftBoardPanel(member));
+				BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
 				BoardFrame.card.show(BoardFrame.leftPanel, "left");
 			}
 		});
@@ -79,8 +81,6 @@ public class ModifyPanel extends JPanel {
 		DeleteBoardBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// System.out.println("-------------------" + boardNoList.size());
-				// DB에서 선택 삭제하기
 				try {
 					dao.deleteBoard(boardNoList);
 
@@ -90,10 +90,10 @@ public class ModifyPanel extends JPanel {
 
 				JOptionPane.showMessageDialog(DeleteBoardBtn, "삭제되었습니다");
 
-				BoardFrame.rightPanel.add("modify", new ModifyPanel(member));
+				BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));
 				BoardFrame.card.show(BoardFrame.rightPanel, "modify");
 
-				BoardFrame.leftPanel.add("left", new LeftBoardPanel(member));
+				BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
 				BoardFrame.card.show(BoardFrame.leftPanel, "left");
 			}
 		});
@@ -170,7 +170,7 @@ public class ModifyPanel extends JPanel {
 								e1.printStackTrace();
 							}
 						}
-						BoardFrame.leftPanel.add("left", new LeftBoardPanel(member));
+						BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
 						BoardFrame.card.show(BoardFrame.leftPanel, "left");
 					}
 				});
