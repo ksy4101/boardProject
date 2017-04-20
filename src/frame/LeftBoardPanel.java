@@ -38,18 +38,18 @@ public class LeftBoardPanel extends JPanel{
 
 		JPanel loginPanel = new JPanel();
 		loginPanel.setLocation(36, 35);
-		loginPanel.setSize(271, 190);
+		loginPanel.setSize(314, 190);
 		add(loginPanel);
 		loginPanel.setLayout(null);
 
 		JLabel idLable = new JLabel(member.getMemId()+"\uB2D8\r");
 		idLable.setFont(new Font("굴림", Font.PLAIN, 15));
-		idLable.setBounds(104, 27, 63, 47);
+		idLable.setBounds(123, 28, 63, 47);
 		loginPanel.add(idLable);
 
 		JButton imModifyBtn = new JButton("\uC815\uBCF4\uC218\uC815");
 		imModifyBtn.setFont(new Font("굴림", Font.PLAIN, 12));
-		imModifyBtn.setBounds(28, 153, 97, 23);
+		imModifyBtn.setBounds(12, 153, 90, 23);
 		imModifyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new UpdateFrame(member);
@@ -59,7 +59,7 @@ public class LeftBoardPanel extends JPanel{
 
 		JButton logoutBtn = new JButton("\uB85C\uADF8\uC544\uC6C3");
 		logoutBtn.setFont(new Font("굴림", Font.PLAIN, 12));
-		logoutBtn.setBounds(150, 153, 97, 23);
+		logoutBtn.setBounds(216, 153, 86, 23);
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new LoginFrame();
@@ -71,8 +71,17 @@ public class LeftBoardPanel extends JPanel{
 
 		JLabel mentLabel = new JLabel("\uD658\uC601\uD569\uB2C8\uB2E4!");
 		mentLabel.setFont(new Font("굴림", Font.PLAIN, 25));
-		mentLabel.setBounds(75, 84, 128, 47);
+		mentLabel.setBounds(94, 85, 128, 47);
 		loginPanel.add(mentLabel);
+		
+		JButton memberMgrBtn = new JButton("\uD68C\uC6D0\uAD00\uB9AC");
+		memberMgrBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		memberMgrBtn.setFont(new Font("굴림", Font.PLAIN, 12));
+		memberMgrBtn.setBounds(114, 153, 90, 23);
+		loginPanel.add(memberMgrBtn);
 
 		boardMgrBtn.setFont(new Font("굴림", Font.PLAIN, 15));
 		boardMgrBtn.setBounds(329, 269, 114, 34);
@@ -134,5 +143,4 @@ public class LeftBoardPanel extends JPanel{
 		});
 
 	}
-
 }

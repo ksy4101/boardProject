@@ -97,7 +97,7 @@ public class ArticlePanel extends JPanel {
 						dm.removeRow(i);
 					}
 					try {
-						articleList = articleDAO.searchArticle(keyField, searchTF.getText());
+						articleList = articleDAO.searchArticle(keyField, searchTF.getText(), boardNo);
 
 						for (int i = 0; i < articleList.size(); i++) {
 							Vector<Object> rowData = new Vector<Object>();
