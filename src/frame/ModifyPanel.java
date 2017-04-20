@@ -160,7 +160,6 @@ public class ModifyPanel extends JPanel {
 							updateB.setText("확인");
 						} else if (e.getActionCommand().equals("확인")) {
 							try {
-								System.out.println(index);
 								dao.updateBoard(
 										new BoardVO(boardList.get(index).getBoardNo(), modifyBoardTF.getText()));
 								modifyBoardTF.setEditable(false);

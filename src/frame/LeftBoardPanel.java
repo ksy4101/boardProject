@@ -32,7 +32,6 @@ public class LeftBoardPanel extends JPanel{
 	public static int index, boardNo;
 
 	public LeftBoardPanel(BoardFrame board, MemberVO member) {
-		System.out.println(member.getMemId());
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 500, 962);
 		setLayout(null);
@@ -83,7 +82,6 @@ public class LeftBoardPanel extends JPanel{
 		} else if (member.getGrade().equals("1")) {
 			boardMgrBtn.setEnabled(true);
 		}
-		System.out.println(member.getGrade());
 		boardMgrBtn.addActionListener(new ActionListener() {
 
 			@Override
