@@ -1,6 +1,5 @@
 package frame;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -98,7 +97,7 @@ public class ArticlePanel extends JPanel {
                   dm.removeRow(i);
                }
                try {
-                  articleList = articleDAO.searchArticle(keyField, searchTF.getText());
+                  articleList = articleDAO.searchArticle(keyField, searchTF.getText(), boardNo);
 
                   for (int i = 0; i < articleList.size(); i++) {
                      Vector<Object> rowData = new Vector<Object>();
@@ -107,6 +106,7 @@ public class ArticlePanel extends JPanel {
                      rowData.addElement(articleList.get(i).elementAt(2));
                      rowData.addElement(articleList.get(i).elementAt(3));
                      rowData.addElement(articleList.get(i).elementAt(4));
+                     rowData.addElement("상세조회");
                      dm.addRow(rowData);
                   }
 
@@ -120,9 +120,6 @@ public class ArticlePanel extends JPanel {
       // 글쓰기 버튼
       JButton writeArticleBtn = new JButton("\uAE00\uC4F0\uAE30");
       writeArticleBtn.setFont(new Font("굴림", Font.PLAIN, 20));
-      if(boardNo == 0){
-         writeArticleBtn.setEnabled(false);
-      }
       writeArticleBtn.setBounds(1086, 63, 97, 36);
       add(writeArticleBtn);
       // 글쓰기 버튼 리스너
@@ -141,9 +138,6 @@ public class ArticlePanel extends JPanel {
       // 선택삭제 버튼
       deleteArticleBtn = new JButton("\uC120\uD0DD\uC0AD\uC81C");
       deleteArticleBtn.setFont(new Font("굴림", Font.PLAIN, 20));
-      if(boardNo == 0){
-         deleteArticleBtn.setVisible(false);
-      }
       deleteArticleBtn.setBounds(1074, 127, 128, 36);
       add(deleteArticleBtn);
       if(member.getGrade().equals("0")){

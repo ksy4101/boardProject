@@ -222,7 +222,7 @@ public class ArticleDAO {
    }
 
    // 게시 글 검색
-   public Vector<Vector<Object>> searchArticle(String keyfield, String keyword) throws SQLException {
+   public Vector<Vector<Object>> searchArticle(String keyfield, String keyword, int boardNo) throws SQLException {
 
       Connection conn = null;
       PreparedStatement pstmt = null;
@@ -239,17 +239,18 @@ public class ArticleDAO {
          sql.append("where                                                                                                  ");
 
          if (keyfield.equals("제목")) {
-            sql.append("subject like ?                                                    ");
+            sql.append("board_no = ? and subject like ?                                                    ");
          } else if (keyfield.equals("내용")) {
-            sql.append("content like ?                                                    ");
+            sql.append("board_no = ? and content like ?                                                    ");
          } else {
-            sql.append("mem_id like ?                                                    ");
+            sql.append("board_no = ? and mem_id like ?                                                    ");
          }
 
          sql.append("order by write_date desc                  ");
          pstmt = conn.prepareStatement(sql.toString());
 
-         pstmt.setString(1, "%" + keyword + "%");
+         pstmt.setInt(1, boardNo);
+         pstmt.setString(2, "%" + keyword + "%");
 
          rs = pstmt.executeQuery();
 
