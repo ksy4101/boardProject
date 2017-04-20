@@ -1,22 +1,20 @@
 package frame;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 
 import dao.BoardDAO;
 import vo.BoardVO;
@@ -28,10 +26,9 @@ public class ModifyPanel extends JPanel {
    private List<Integer> boardNoList = new ArrayList<Integer>();
    private JTextField addBoardTF;
    private BoardDAO dao = new BoardDAO();
-   private JPanel AllBoardListPanel, BoardListPanel;
+   private JPanel allBoardListPanel, boardListPanel;
    private int y = 10;
    private BoardFrame board;
-   private JScrollPane scrollPane = new JScrollPane();
 
    /**
     * Create the panel.
@@ -40,34 +37,36 @@ public class ModifyPanel extends JPanel {
       this.board = board;
       setBounds(0, 0, 1284, 962);
       setLayout(null);
-            
-      AllBoardListPanel = new JPanel();
-      AllBoardListPanel.setLayout(null);
-      AllBoardListPanel.setBackground(Color.WHITE);
-      AllBoardListPanel.setPreferredSize(new Dimension(962, 3000));
       
-      scrollPane = new JScrollPane(AllBoardListPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);  // 스크롤패널을 선언      
-      scrollPane.setBounds(133, 114, 962, 610);
-      scrollPane.setViewportView(AllBoardListPanel);
-      add(scrollPane);
-      
+
       addBoardTF = new JTextField();
       addBoardTF.setFont(new Font("굴림", Font.PLAIN, 25));
       addBoardTF.setBounds(133, 773, 369, 59);
       add(addBoardTF);
       addBoardTF.setColumns(10);
-      
+
+      allBoardListPanel = new JPanel();
+      allBoardListPanel.setBackground(Color.WHITE);
+      allBoardListPanel.setBounds(133, 114, 962, 610);
+      add(allBoardListPanel);
+      allBoardListPanel.setLayout(null);
+
       JButton addBoardBtn = new JButton("\uB4F1\uB85D");
       addBoardBtn.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             // 게시판 등록 버튼
             try {
-               dao.insertBoard(new BoardVO(0, addBoardTF.getText()));
-               JOptionPane.showMessageDialog(addBoardBtn, "게시판 등록완료");
-               AllBoardListPanel.removeAll();
-               AllBoardListPanel.revalidate();
-               AllBoardListPanel.repaint();
-               // addBoardTF.setText("");
+                String p = "([a-zA-Z0-9가-힣]{1,100})";
+                    boolean b = Pattern.matches(p, addBoardTF.getText());
+               if(!b){
+                  JOptionPane.showMessageDialog(null, "게시판 이름을 작성해주세요");
+               } else {
+                  dao.insertBoard(new BoardVO(0, addBoardTF.getText()));
+                  JOptionPane.showMessageDialog(addBoardBtn, "게시판 등록완료");
+                  allBoardListPanel.removeAll();
+                  allBoardListPanel.revalidate();
+                  allBoardListPanel.repaint();
+               }
             } catch (SQLException e1) {
                e1.printStackTrace();
             }
@@ -119,33 +118,33 @@ public class ModifyPanel extends JPanel {
 
          for (int i = 0; i < boardList.size(); i++) {
             int index = i;
-            BoardListPanel = new JPanel();
-            BoardListPanel.setLayout(null);
-            
-            BoardListPanel.setBackground(Color.WHITE);
-            BoardListPanel.setBounds(12, y, 912, 60);
-            AllBoardListPanel.add(BoardListPanel);
-            
+            boardListPanel = new JPanel();
+            boardListPanel.setBackground(Color.WHITE);
+            boardListPanel.setBounds(12, y, 912, 60);
+            allBoardListPanel.add(boardListPanel);
+
+            boardListPanel.setLayout(null);
+
             final JButton updateB = new JButton("\uC218\uC815");
             updateB.setFont(new Font("굴림", Font.PLAIN, 25));
             updateB.setBounds(720, 10, 97, 40);
-            BoardListPanel.add(updateB);
+            boardListPanel.add(updateB);
 
             JCheckBox checkBox = new JCheckBox("");
 
             checkBox.setBackground(Color.WHITE);
             checkBox.setFont(new Font("굴림", Font.PLAIN, 18));
             checkBox.setBounds(854, 20, 21, 23);
-            BoardListPanel.add(checkBox);
+            boardListPanel.add(checkBox);
 
             final JTextField modifyBoardTF = new JTextField();
             modifyBoardTF.setEditable(false);
             modifyBoardTF.setText(boardList.get(i).getBoardName());
             modifyBoardTF.setFont(new Font("굴림", Font.PLAIN, 50));
             modifyBoardTF.setBounds(0, 0, 400, 60);
-            BoardListPanel.add(modifyBoardTF);
+            boardListPanel.add(modifyBoardTF);
 
-            y += 80;            
+            y += 80;
 
             checkBox.addActionListener(new ActionListener() {
                @Override
@@ -158,7 +157,7 @@ public class ModifyPanel extends JPanel {
                   }
                }
             });
-            
+
             updateB.addActionListener(new ActionListener() {
                @Override
                public void actionPerformed(ActionEvent e) {
@@ -168,11 +167,17 @@ public class ModifyPanel extends JPanel {
                      updateB.setText("확인");
                   } else if (e.getActionCommand().equals("확인")) {
                      try {
-                        dao.updateBoard(
-                              new BoardVO(boardList.get(index).getBoardNo(), modifyBoardTF.getText()));
-                        modifyBoardTF.setEditable(false);
-                        updateB.setText("수정");
-                        JOptionPane.showMessageDialog(updateB, "수정되었습니다");
+                        String p = "([a-zA-Z0-9가-힣]{1,100})";
+                        boolean b = Pattern.matches(p, modifyBoardTF.getText());
+                        if(!b){
+                           JOptionPane.showMessageDialog(null,"게시판 이름을 작성해주세요");
+                        } else {
+                           dao.updateBoard(
+                                 new BoardVO(boardList.get(index).getBoardNo(), modifyBoardTF.getText()));
+                           modifyBoardTF.setEditable(false);
+                           updateB.setText("수정");
+                           JOptionPane.showMessageDialog(updateB, "수정되었습니다");
+                        }
                      } catch (SQLException e1) {
                         e1.printStackTrace();
                      }
