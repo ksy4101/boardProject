@@ -44,7 +44,7 @@ public class LeftBoardPanel extends JPanel{
 
 		JLabel idLable = new JLabel(member.getMemId()+"\uB2D8\r");
 		idLable.setFont(new Font("굴림", Font.PLAIN, 18));
-		idLable.setBounds(90, 28, 59, 47);
+		idLable.setBounds(90, 28, 95, 47);
 		loginPanel.add(idLable);
 
 		JButton imModifyBtn = new JButton("\uC815\uBCF4\uC218\uC815");
