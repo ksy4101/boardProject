@@ -40,17 +40,16 @@ public class ModifyPanel extends JPanel {
 		this.board = board;
 		setBounds(0, 0, 1284, 962);
 		setLayout(null);
-
+				
 		AllBoardListPanel = new JPanel();
 		AllBoardListPanel.setLayout(null);
 		AllBoardListPanel.setBackground(Color.WHITE);
 		AllBoardListPanel.setPreferredSize(new Dimension(962, 3000));
-
-		scrollPane = new JScrollPane(AllBoardListPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // 스크롤패널을 선언
+		
+		scrollPane = new JScrollPane(AllBoardListPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);  // 스크롤패널을 선언		
 		scrollPane.setBounds(133, 114, 962, 610);
 		scrollPane.setViewportView(AllBoardListPanel);
-		add(scrollPane);
+		add(scrollPane);		
 
 		addBoardTF = new JTextField();
 		addBoardTF.setFont(new Font("굴림", Font.PLAIN, 25));
@@ -122,7 +121,6 @@ public class ModifyPanel extends JPanel {
 				int index = i;
 				BoardListPanel = new JPanel();
 				BoardListPanel.setLayout(null);
-
 				BoardListPanel.setBackground(Color.WHITE);
 				BoardListPanel.setBounds(12, y, 912, 60);
 				AllBoardListPanel.add(BoardListPanel);
@@ -146,7 +144,7 @@ public class ModifyPanel extends JPanel {
 				modifyBoardTF.setBounds(0, 0, 400, 60);
 				BoardListPanel.add(modifyBoardTF);
 
-				y += 80;
+				y += 80;				
 
 				checkBox.addActionListener(new ActionListener() {
 					@Override
@@ -159,7 +157,7 @@ public class ModifyPanel extends JPanel {
 						}
 					}
 				});
-
+				
 				updateB.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {

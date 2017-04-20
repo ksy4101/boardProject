@@ -94,7 +94,7 @@ public class ArticleDAO {
          for (int i = 0 ; i < list.size() ; i++) {
             StringBuilder sql = new StringBuilder();
             sql.append("delete from reply                  ");
-            sql.append("where art_no = ?                  ");
+            sql.append("where art_no in(?)                  ");
             pstmt = conn.prepareStatement(sql.toString());
 
             pstmt.setInt(1, list.get(i));

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -115,24 +116,29 @@ public class UpdateArticleJPanel extends JPanel {
                   updateB.setText("수정확인");
                } else if(e.getActionCommand().equals("수정확인")){
                   try {
-                     if (subTF.getText().length() == 0) {
+                	  //제목, 내용이 스페이스일때 b,c
+                	  String p = "([a-zA-Z0-9가-힣]{1,100})";
+                      boolean b = Pattern.matches(p, subTF.getText());
+                      boolean c = Pattern.matches(p, contTA.getText());
+                      
+                     if (!b) {
                           JOptionPane.showMessageDialog(subTF, "제목을 입력하세요");
                           return;
-                       } else if (contTA.getText().length() == 0) {
+                       } else if (!c) {
                           JOptionPane.showMessageDialog(contTA, "내용을 입력하세요");
                           return;
                        } else {
-                        ArticleVO article = dao.selectArticle(artNo);
-                        
-                        article.setSubject(subTF.getText());
-                        article.setContent(contTA.getText());
-                        
-                        dao.updateArticle(article);
-                        
-                        JOptionPane.showMessageDialog(updateB, "수정되었습니다.");
-                        
-                        BoardFrame.rightPanel.add("article", new ArticlePanel(member,boardNo));
-                        BoardFrame.card.show(BoardFrame.rightPanel, "article");
+	                        ArticleVO article = dao.selectArticle(artNo);
+	                        
+	                        article.setSubject(subTF.getText());
+	                        article.setContent(contTA.getText());
+	                        
+	                        dao.updateArticle(article);
+	                        
+	                        JOptionPane.showMessageDialog(updateB, "수정되었습니다.");
+	                        
+	                        BoardFrame.rightPanel.add("article", new ArticlePanel(member,boardNo));
+	                        BoardFrame.card.show(BoardFrame.rightPanel, "article");
                        }
                   } catch (Exception e2) {
                      e2.printStackTrace();

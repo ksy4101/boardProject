@@ -274,7 +274,13 @@ public class ReplyPanel extends JPanel {
 				}
 				
 				replyListPanel.add(replyPanel);
+					
+				pane.setViewportView(replyListPanel);// 스크롤 팬 위에 패널을 올린다.
+				pane.setBounds(0, 0, 1280, 730);// 위치지정
+				pane.getVerticalScrollBar().setValue(pane.getVerticalScrollBar().getMaximum());
 
+				add(pane);
+				replyListPanel.add(replyPanel);
 				y += 140; // for문이 돌아갈때마다 더해준다.
 
 			}
