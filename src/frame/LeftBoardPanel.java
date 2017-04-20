@@ -78,9 +78,9 @@ public class LeftBoardPanel extends JPanel{
 		boardMgrBtn.setBounds(329, 269, 114, 34);
 		add(boardMgrBtn);
 		if (member.getGrade().equals("0")) {
-			boardMgrBtn.setEnabled(false);
+			boardMgrBtn.setVisible(false);
 		} else if (member.getGrade().equals("1")) {
-			boardMgrBtn.setEnabled(true);
+			boardMgrBtn.setVisible(true);
 		}
 		boardMgrBtn.addActionListener(new ActionListener() {
 
@@ -105,6 +105,17 @@ public class LeftBoardPanel extends JPanel{
 			}
 		});
 		memberMgrBtn.setFont(new Font("굴림", Font.PLAIN, 15));
+		if(member.getGrade().equals("0")){
+			memberMgrBtn.setVisible(false);
+		}
+		else if(member.getGrade().equals("1")){
+			memberMgrBtn.setVisible(true);
+		}
+		memberMgrBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MgrFrame();
+			}
+		});
 		memberMgrBtn.setBounds(203, 269, 114, 34);
 		add(memberMgrBtn);
 

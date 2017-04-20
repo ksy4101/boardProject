@@ -56,7 +56,6 @@ public class MgrFrame extends JFrame {
 
 	public MgrFrame() {
 		getContentPane().setBackground(Color.DARK_GRAY);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// x버튼을 누를경우 프로그램 종료
 
 		String[] columnNames = { "아이디", "이름", "연락처", "이메일" };// 테이블의 컬럼 네임을 지정해줄
 																// String 배열

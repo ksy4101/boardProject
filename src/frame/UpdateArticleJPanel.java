@@ -44,7 +44,6 @@ public class UpdateArticleJPanel extends JPanel {
 
       try {
          ArticleVO article = dao.selectArticle(artNo);
-
          dateTF = new JTextField();
          dateTF.setEditable(false);
          dateTF.setBounds(1033, 10, 240, 59);
@@ -85,7 +84,7 @@ public class UpdateArticleJPanel extends JPanel {
          memTF.setBounds(710, 10, 227, 59);
          add(memTF);
          memTF.setColumns(10);
-         memTF.setText(member.getMemId()); // 작성자 아이디 받아와서 출력하기
+         memTF.setText(article.getMemId()); // 작성자 아이디 받아와서 출력하기
          memTF.setEditable(false);
 
          JTextArea contTA = new JTextArea();
@@ -146,8 +145,8 @@ public class UpdateArticleJPanel extends JPanel {
          
          JButton deleteB = new JButton("삭제");
          deleteB.setEnabled(false);
-         String id = dao.selectArticle(artNo).getMemId();
-         if(member.getMemId().equals(id)){
+         
+         if(member.getMemId().equals(article.getMemId())){
         	 updateB.setEnabled(true);
         	 deleteB.setEnabled(true);
          }
