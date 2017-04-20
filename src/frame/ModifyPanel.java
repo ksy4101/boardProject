@@ -25,168 +25,169 @@ import vo.MemberVO;
 //게시판 관리
 public class ModifyPanel extends JPanel {
 
-   private List<Integer> boardNoList = new ArrayList<Integer>();
-   private JTextField addBoardTF;
-   private BoardDAO dao = new BoardDAO();
-   private JPanel AllBoardListPanel, BoardListPanel;
-   private int y = 10;
-   private BoardFrame board;
-   private JScrollPane scrollPane = new JScrollPane();
+	private List<Integer> boardNoList = new ArrayList<Integer>();
+	private JTextField addBoardTF;
+	private BoardDAO dao = new BoardDAO();
+	private JPanel AllBoardListPanel, BoardListPanel;
+	private int y = 10;
+	private BoardFrame board;
+	private JScrollPane scrollPane = new JScrollPane();
 
-   /**
-    * Create the panel.
-    */
-   public ModifyPanel(BoardFrame board, MemberVO member) {
-      this.board = board;
-      setBounds(0, 0, 1284, 962);
-      setLayout(null);
-            
-      AllBoardListPanel = new JPanel();
-      AllBoardListPanel.setLayout(null);
-      AllBoardListPanel.setBackground(Color.WHITE);
-      AllBoardListPanel.setPreferredSize(new Dimension(962, 3000));
-      
-      scrollPane = new JScrollPane(AllBoardListPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);  // 스크롤패널을 선언      
-      scrollPane.setBounds(133, 114, 962, 610);
-      scrollPane.setViewportView(AllBoardListPanel);
-      add(scrollPane);
-      
-      addBoardTF = new JTextField();
-      addBoardTF.setFont(new Font("굴림", Font.PLAIN, 25));
-      addBoardTF.setBounds(133, 773, 369, 59);
-      add(addBoardTF);
-      addBoardTF.setColumns(10);
-      
-      JButton addBoardBtn = new JButton("\uB4F1\uB85D");
-      addBoardBtn.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-            // 게시판 등록 버튼
-            try {
-               dao.insertBoard(new BoardVO(0, addBoardTF.getText()));
-               JOptionPane.showMessageDialog(addBoardBtn, "게시판 등록완료");
-               AllBoardListPanel.removeAll();
-               AllBoardListPanel.revalidate();
-               AllBoardListPanel.repaint();
-               // addBoardTF.setText("");
-            } catch (SQLException e1) {
-               e1.printStackTrace();
-            }
-            addBoardTF.revalidate();
+	/**
+	 * Create the panel.
+	 */
+	public ModifyPanel(BoardFrame board, MemberVO member) {
+		this.board = board;
+		setBounds(0, 0, 1284, 962);
+		setLayout(null);
 
-            BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));
-            BoardFrame.card.show(BoardFrame.rightPanel, "modify");
+		AllBoardListPanel = new JPanel();
+		AllBoardListPanel.setLayout(null);
+		AllBoardListPanel.setBackground(Color.WHITE);
+		AllBoardListPanel.setPreferredSize(new Dimension(962, 3000));
 
-            BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
-            BoardFrame.card.show(BoardFrame.leftPanel, "left");
-         }
-      });
-      addBoardBtn.setFont(new Font("굴림", Font.PLAIN, 25));
-      addBoardBtn.setBounds(524, 773, 122, 59);
-      add(addBoardBtn);
+		scrollPane = new JScrollPane(AllBoardListPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // 스크롤패널을 선언
+		scrollPane.setBounds(133, 114, 962, 610);
+		scrollPane.setViewportView(AllBoardListPanel);
+		add(scrollPane);
 
-      JButton DeleteBoardBtn = new JButton("\uC120\uD0DD\uC0AD\uC81C");
-      DeleteBoardBtn.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
+		addBoardTF = new JTextField();
+		addBoardTF.setFont(new Font("굴림", Font.PLAIN, 25));
+		addBoardTF.setBounds(133, 773, 369, 59);
+		add(addBoardTF);
+		addBoardTF.setColumns(10);
 
-            try {
-               dao.deleteBoard(boardNoList);
+		JButton addBoardBtn = new JButton("\uB4F1\uB85D");
+		addBoardBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// 게시판 등록 버튼
+				try {					
+					dao.insertBoard(new BoardVO(0, addBoardTF.getText()));					
+					JOptionPane.showMessageDialog(addBoardBtn, "게시판 등록완료");					
+					AllBoardListPanel.removeAll();
+					AllBoardListPanel.revalidate();
+					AllBoardListPanel.repaint();
+					// addBoardTF.setText("");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				addBoardTF.revalidate();
 
-            } catch (SQLException e1) {
-               e1.printStackTrace();
-            }
+				BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));
+				BoardFrame.card.show(BoardFrame.rightPanel, "modify");
 
-            JOptionPane.showMessageDialog(DeleteBoardBtn, "삭제되었습니다");
+				BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
+				BoardFrame.card.show(BoardFrame.leftPanel, "left");
+			}
+		});
+		addBoardBtn.setFont(new Font("굴림", Font.PLAIN, 25));
+		addBoardBtn.setBounds(524, 773, 122, 59);
+		add(addBoardBtn);
 
-            BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));
-            BoardFrame.card.show(BoardFrame.rightPanel, "modify");
+		JButton DeleteBoardBtn = new JButton("\uC120\uD0DD\uC0AD\uC81C");
+		DeleteBoardBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-            BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
-            BoardFrame.card.show(BoardFrame.leftPanel, "left");
-         }
-      });
-      DeleteBoardBtn.setFont(new Font("굴림", Font.PLAIN, 25));
-      DeleteBoardBtn.setBounds(934, 773, 161, 59);
-      add(DeleteBoardBtn);
+				try {
+					dao.deleteBoard(boardNoList);
 
-      ShowBoard(member);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 
-   }
+				JOptionPane.showMessageDialog(DeleteBoardBtn, "삭제되었습니다");
 
-   public void ShowBoard(MemberVO member) {
+				BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));
+				BoardFrame.card.show(BoardFrame.rightPanel, "modify");
 
-      try {
-         List<BoardVO> boardList = dao.selectAllBoard();
+				BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
+				BoardFrame.card.show(BoardFrame.leftPanel, "left");
+			}
+		});
+		DeleteBoardBtn.setFont(new Font("굴림", Font.PLAIN, 25));
+		DeleteBoardBtn.setBounds(934, 773, 161, 59);
+		add(DeleteBoardBtn);
 
-         for (int i = 0; i < boardList.size(); i++) {
-            int index = i;
-            BoardListPanel = new JPanel();
-            BoardListPanel.setLayout(null);
-            
-            BoardListPanel.setBackground(Color.WHITE);
-            BoardListPanel.setBounds(12, y, 912, 60);
-            AllBoardListPanel.add(BoardListPanel);
-            
-            final JButton updateB = new JButton("\uC218\uC815");
-            updateB.setFont(new Font("굴림", Font.PLAIN, 25));
-            updateB.setBounds(720, 10, 97, 40);
-            BoardListPanel.add(updateB);
+		ShowBoard(member);
 
-            JCheckBox checkBox = new JCheckBox("");
+	}
 
-            checkBox.setBackground(Color.WHITE);
-            checkBox.setFont(new Font("굴림", Font.PLAIN, 18));
-            checkBox.setBounds(854, 20, 21, 23);
-            BoardListPanel.add(checkBox);
+	public void ShowBoard(MemberVO member) {
 
-            final JTextField modifyBoardTF = new JTextField();
-            modifyBoardTF.setEditable(false);
-            modifyBoardTF.setText(boardList.get(i).getBoardName());
-            modifyBoardTF.setFont(new Font("굴림", Font.PLAIN, 50));
-            modifyBoardTF.setBounds(0, 0, 400, 60);
-            BoardListPanel.add(modifyBoardTF);
+		try {
+			List<BoardVO> boardList = dao.selectAllBoard();
 
-            y += 80;            
+			for (int i = 0; i < boardList.size(); i++) {
+				int index = i;
+				BoardListPanel = new JPanel();
+				BoardListPanel.setLayout(null);
 
-            checkBox.addActionListener(new ActionListener() {
-               @Override
-               public void actionPerformed(ActionEvent e) {
-                  // 선택 체크박스
-                  if (checkBox.isSelected()) {
-                     boardNoList.add(boardList.get(index).getBoardNo());
-                  } else {
-                     boardNoList.remove(new Integer(boardList.get(index).getBoardNo()));
-                  }
-               }
-            });
-            
-            updateB.addActionListener(new ActionListener() {
-               @Override
-               public void actionPerformed(ActionEvent e) {
-                  // 게시판이름 수정
-                  if (e.getActionCommand().equals("수정")) {
-                     modifyBoardTF.setEditable(true);
-                     updateB.setText("확인");
-                  } else if (e.getActionCommand().equals("확인")) {
-                     try {
-                        dao.updateBoard(
-                              new BoardVO(boardList.get(index).getBoardNo(), modifyBoardTF.getText()));
-                        modifyBoardTF.setEditable(false);
-                        updateB.setText("수정");
-                        JOptionPane.showMessageDialog(updateB, "수정되었습니다");
-                     } catch (SQLException e1) {
-                        e1.printStackTrace();
-                     }
-                  }
-                  BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
-                  BoardFrame.card.show(BoardFrame.leftPanel, "left");
-               }
-            });
+				BoardListPanel.setBackground(Color.WHITE);
+				BoardListPanel.setBounds(12, y, 912, 60);
+				AllBoardListPanel.add(BoardListPanel);
 
-         }
+				final JButton updateB = new JButton("\uC218\uC815");
+				updateB.setFont(new Font("굴림", Font.PLAIN, 25));
+				updateB.setBounds(720, 10, 97, 40);
+				BoardListPanel.add(updateB);
 
-      } catch (Exception ex) {
-         ex.printStackTrace();
-      }
+				JCheckBox checkBox = new JCheckBox("");
 
-   }
+				checkBox.setBackground(Color.WHITE);
+				checkBox.setFont(new Font("굴림", Font.PLAIN, 18));
+				checkBox.setBounds(854, 20, 21, 23);
+				BoardListPanel.add(checkBox);
+
+				final JTextField modifyBoardTF = new JTextField();
+				modifyBoardTF.setEditable(false);
+				modifyBoardTF.setText(boardList.get(i).getBoardName());
+				modifyBoardTF.setFont(new Font("굴림", Font.PLAIN, 50));
+				modifyBoardTF.setBounds(0, 0, 400, 60);
+				BoardListPanel.add(modifyBoardTF);
+
+				y += 80;
+
+				checkBox.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// 선택 체크박스
+						if (checkBox.isSelected()) {
+							boardNoList.add(boardList.get(index).getBoardNo());
+						} else {
+							boardNoList.remove(new Integer(boardList.get(index).getBoardNo()));
+						}
+					}
+				});
+
+				updateB.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// 게시판이름 수정
+						if (e.getActionCommand().equals("수정")) {
+							modifyBoardTF.setEditable(true);
+							updateB.setText("확인");
+						} else if (e.getActionCommand().equals("확인")) {
+							try {
+								dao.updateBoard(
+										new BoardVO(boardList.get(index).getBoardNo(), modifyBoardTF.getText()));
+								modifyBoardTF.setEditable(false);
+								updateB.setText("수정");
+								JOptionPane.showMessageDialog(updateB, "수정되었습니다");
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+						}
+						BoardFrame.leftPanel.add("left", new LeftBoardPanel(board, member));
+						BoardFrame.card.show(BoardFrame.leftPanel, "left");
+					}
+				});
+
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
 }
