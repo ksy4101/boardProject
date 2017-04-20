@@ -159,15 +159,21 @@ public class ReplyPanel extends JPanel {
 		try {
 			ReplyDAO dao = new ReplyDAO();
 			List<ReplyVO> replys = dao.selectReplyList(artNo); // artNO로 댓글들 조회
+			
+			replyPanel = new JPanel();
+			replyPanel.setLayout(null);
+
+			replyPanel.setBounds(0, y, 1280, 120); // y값을 변경을줘서 댓글을 for문이 끝날
+													// 때가지 실행
+			
+			pane.setViewportView(replyListPanel);// 스크롤 팬 위에 패널을 올린다.
+			pane.setBounds(0, 0, 1280, 730);// 위치지정
+			pane.getVerticalScrollBar().setValue(0);
+
+			add(pane);
 
 			for (int i = 0; i < replys.size(); i++) {// for문으로 댓글들 갯수만큼 증가시킴
-				ReplyVO reply = replys.get(i); // dao에서 값을불러와 reply에 저장
-
-				replyPanel = new JPanel();
-				replyPanel.setLayout(null);
-
-				replyPanel.setBounds(0, y, 1280, 120); // y값을 변경을줘서 댓글을 for문이 끝날
-														// 때가지 실행
+				ReplyVO reply = replys.get(i); // dao에서 값을불러와 reply에 저장			
 
 				JTextArea DBreplytext = new JTextArea();
 				DBreplytext.setBounds(12, 10, 700, 100);
@@ -266,12 +272,7 @@ public class ReplyPanel extends JPanel {
 					updateReplyBtn.setVisible(false);
 					deleteReplybtn.setVisible(false);
 				}
-
-				pane.setViewportView(replyListPanel);// 스크롤 팬 위에 패널을 올린다.
-				pane.setBounds(0, 0, 1280, 730);// 위치지정
-				pane.getVerticalScrollBar().setValue(0);
-
-				add(pane);
+				
 				replyListPanel.add(replyPanel);
 
 				y += 140; // for문이 돌아갈때마다 더해준다.
