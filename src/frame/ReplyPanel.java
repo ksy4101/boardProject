@@ -381,7 +381,7 @@ public class ReplyPanel extends JPanel {
 
 					String reContent = insertReplyText.getText(); // 화면에 쓰는 내용
 
-					String p = "((\\S){1,100})";
+					String p = "((\\S|.){1,100})";
 	                boolean b = Pattern.matches(p, reContent);
 	               if(!b){
 	            	   JOptionPane.showMessageDialog(ReplyPanel.this, " 댓글내용을 입력하세요");
@@ -415,7 +415,7 @@ public class ReplyPanel extends JPanel {
 				try {
 					String reContent = insertReplyText.getText(); // 화면에 쓰는 내용
 
-					String p = "((\\S){1,100})";
+					String p = "((\\S|.){1,100})";
 	                boolean b = Pattern.matches(p, reContent);
 	               if(!b){
 	            	   JOptionPane.showMessageDialog(ReplyPanel.this, "댓글내용을 입력하세요");
