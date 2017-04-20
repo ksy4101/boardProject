@@ -40,6 +40,7 @@ public class ReplyPanel extends JPanel {
 	private JButton allreplyDeletebutton, myinsertBtn;
 	private JScrollPane pane;
 	private MemberVO member;
+	private int height = 730;
 
 	ReplyTextLimit limit = new ReplyTextLimit(99);
 	// 클래스에서 가져온다. 범위는 (99) 이유: 한글은 1개가 3바이트이므로 re_content가 300이여야 100지를 쓸수있으므로
@@ -268,7 +269,7 @@ public class ReplyPanel extends JPanel {
 
 				pane.setViewportView(replyListPanel);// 스크롤 팬 위에 패널을 올린다.
 				pane.setBounds(0, 0, 1280, 730);// 위치지정
-				pane.getVerticalScrollBar().setValue(pane.getVerticalScrollBar().getMaximum());
+				pane.getVerticalScrollBar().setValue(0);
 
 				add(pane);
 				replyListPanel.add(replyPanel);
@@ -291,7 +292,7 @@ public class ReplyPanel extends JPanel {
 		setLayout(null);
 
 		setBackground(Color.WHITE);
-		setBounds(0, 0, 1280, 980);
+		//setBounds(0, 0, 1280, 980);
 
 		//////////////////////////////////////// 댓글 목록 조회
 		//////////////////////////////////////// ////////////////////////////////////////
@@ -302,7 +303,10 @@ public class ReplyPanel extends JPanel {
 		replyListPanel = new JPanel();
 		replyListPanel.setLayout(null);// GridBagLayout스크롤 오류나면 이넘으로 수정- 구글링에서
 		// panel를 이걸로 변경하라는 설명이있다.
-		replyListPanel.setPreferredSize(getPreferredSize()); // 사이즈 정보를 가지고 있는
+		pane = new JScrollPane();
+		pane.setBounds(0, 0, 1280, 980);
+		add(pane);
+		replyListPanel.setPreferredSize(new Dimension(1280,3000)); // 사이즈 정보를 가지고 있는
 																// 객체를 이용해 패널의
 																// 사이즈 지정
 
