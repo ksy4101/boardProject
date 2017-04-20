@@ -111,7 +111,7 @@ public class BoardDAO {
 				sql.delete(0, sql.length());
 
 				sql.append("delete from article         										");
-				sql.append("where board_no in = ?												");
+				sql.append("where board_no = ?												");
 				pstmt = conn.prepareStatement(sql.toString());
 
 				pstmt.setInt(1, list.get(i));
