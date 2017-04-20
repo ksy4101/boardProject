@@ -172,8 +172,6 @@ public class ArticlePanel extends JPanel {
                   try {
                      articleDAO.deleteArticle(list);
                      
-                     System.out.println(indexs.size());
-                     
                      for (int i = indexs.size() - 1; i >= 0; i--) {
                         dm.removeRow(indexs.elementAt(i));
                      }

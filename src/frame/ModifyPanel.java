@@ -64,8 +64,8 @@ public class ModifyPanel extends JPanel {
          public void actionPerformed(ActionEvent e) {
             // 게시판 등록 버튼
             try {
-                String p = "((\\w+\\s*){1,100})";
-                    boolean b = Pattern.matches(p, addBoardTF.getText());
+                String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
+                boolean b = Pattern.matches(p, addBoardTF.getText());
                if(!b){
                   JOptionPane.showMessageDialog(null, "게시판 이름을 작성해주세요");
                } else {
@@ -174,11 +174,20 @@ public class ModifyPanel extends JPanel {
                      updateB.setText("확인");
                   } else if (e.getActionCommand().equals("확인")) {
                      try {
-                        String p = "((\\w+\\s*){1,100})";
+                    	 /*String p = "[a-zA-Z0-9가-힣ㄱ-ㅎ\\s]+";
+                    	 //String p = "([a-zA-Z0-9가-힣ㄱ-ㅎ]+[a-zA-Z0-9가-힣ㄱ-ㅎ\\s])";
+                        //String p = "([a-z]*[A-Z]*[0-9]*[가-힣]*\\s*{1,100})";
                         boolean b = Pattern.matches(p, modifyBoardTF.getText());
-                        if(!b){
+                        if(!b){*/
+                    	/*if(modifyBoardTF.getText().charAt(0) == ' '){
                            JOptionPane.showMessageDialog(null,"게시판 이름을 작성해주세요");
-                        } else {
+                        } */
+                    	 String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
+                         boolean b = Pattern.matches(p, modifyBoardTF.getText());
+                    	 if(!b){
+                    		 JOptionPane.showMessageDialog(null,"게시판 이름을 작성해주세요");
+                    	 }
+                     else {
                            dao.updateBoard(
                                  new BoardVO(boardList.get(index).getBoardNo(), modifyBoardTF.getText()));
                            modifyBoardTF.setEditable(false);

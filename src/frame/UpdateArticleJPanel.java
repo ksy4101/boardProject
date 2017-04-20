@@ -117,7 +117,7 @@ public class UpdateArticleJPanel extends JPanel {
                } else if(e.getActionCommand().equals("수정확인")){
                   try {
                 	  //제목, 내용이 스페이스일때 b,c
-                	  String p = "((\\w+\\s*){1,100})";
+                	  String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
                       boolean b = Pattern.matches(p, subTF.getText());
                       boolean c = Pattern.matches(p, contTA.getText());
                       

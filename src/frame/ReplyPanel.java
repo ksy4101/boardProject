@@ -381,10 +381,11 @@ public class ReplyPanel extends JPanel {
 
 					String reContent = insertReplyText.getText(); // 화면에 쓰는 내용
 
-					if (reContent.length() == 0) { // 댓글에 내용을 안쓰면 출력
-						JOptionPane.showMessageDialog(ReplyPanel.this, " 댓글내용을 입력하세요");
-						return;
-					}
+					String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
+	                boolean b = Pattern.matches(p, reContent);
+	               if(!b){
+	            	   JOptionPane.showMessageDialog(ReplyPanel.this, " 댓글내용을 입력하세요");
+	               }
 
 					ReplyDAO dao = new ReplyDAO();
 					dao.insertReply(new ReplyVO(reNo, artNo, member.getMemId(), reContent)); // 4를
@@ -413,10 +414,11 @@ public class ReplyPanel extends JPanel {
 				try {
 					String reContent = insertReplyText.getText(); // 화면에 쓰는 내용
 
-					if (reContent.length() == 0) {// 댓글에 내용을 안쓰면 출력
-						JOptionPane.showMessageDialog(ReplyPanel.this, "댓글내용을 입력하세요");
-						return;
-					}
+					String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
+	                boolean b = Pattern.matches(p, reContent);
+	               if(!b){
+	            	   JOptionPane.showMessageDialog(ReplyPanel.this, "댓글내용을 입력하세요");
+	               }
 
 					ReplyDAO dao = new ReplyDAO();
 					dao.insertReply(new ReplyVO(reNo, artNo, member.getMemId(), reContent));// 4를

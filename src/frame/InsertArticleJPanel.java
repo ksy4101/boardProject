@@ -98,7 +98,7 @@ public class InsertArticleJPanel extends JPanel {
                      JOptionPane.showMessageDialog(null, "게시판 이름을 작성해주세요");
                   }*/
                   
-                  String p = "((\\w+\\s*){1,100})";
+                  String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
                       boolean b = Pattern.matches(p, subTF.getText());
                       boolean c = Pattern.matches(p, contTA.getText());
                        
