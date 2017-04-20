@@ -2,6 +2,7 @@ package frame;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 import dao.BoardDAO;
 import vo.BoardVO;
@@ -29,6 +32,7 @@ public class ModifyPanel extends JPanel {
    private JPanel allBoardListPanel, boardListPanel;
    private int y = 10;
    private BoardFrame board;
+   private JScrollPane scrollPane = new JScrollPane();
 
    /**
     * Create the panel.
@@ -38,18 +42,22 @@ public class ModifyPanel extends JPanel {
       setBounds(0, 0, 1284, 962);
       setLayout(null);
       
+      allBoardListPanel = new JPanel();
+      allBoardListPanel.setLayout(null);
+      allBoardListPanel.setBackground(Color.WHITE);
+      allBoardListPanel.setPreferredSize(new Dimension(962, 3000));
+
+      scrollPane = new JScrollPane(allBoardListPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+      ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // 스크롤패널을 선언
+      scrollPane.setBounds(133, 114, 962, 610);
+      scrollPane.setViewportView(allBoardListPanel);
+      add(scrollPane);
 
       addBoardTF = new JTextField();
       addBoardTF.setFont(new Font("굴림", Font.PLAIN, 25));
       addBoardTF.setBounds(133, 773, 369, 59);
       add(addBoardTF);
-      addBoardTF.setColumns(10);
-
-      allBoardListPanel = new JPanel();
-      allBoardListPanel.setBackground(Color.WHITE);
-      allBoardListPanel.setBounds(133, 114, 962, 610);
-      add(allBoardListPanel);
-      allBoardListPanel.setLayout(null);
+      addBoardTF.setColumns(10);      
 
       JButton addBoardBtn = new JButton("\uB4F1\uB85D");
       addBoardBtn.addActionListener(new ActionListener() {
@@ -119,11 +127,10 @@ public class ModifyPanel extends JPanel {
          for (int i = 0; i < boardList.size(); i++) {
             int index = i;
             boardListPanel = new JPanel();
+            boardListPanel.setLayout(null);
             boardListPanel.setBackground(Color.WHITE);
             boardListPanel.setBounds(12, y, 912, 60);
-            allBoardListPanel.add(boardListPanel);
-
-            boardListPanel.setLayout(null);
+            allBoardListPanel.add(boardListPanel);           
 
             final JButton updateB = new JButton("\uC218\uC815");
             updateB.setFont(new Font("굴림", Font.PLAIN, 25));
