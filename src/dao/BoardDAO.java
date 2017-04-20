@@ -100,7 +100,7 @@ public class BoardDAO {
 			for (int i = 0; i < list.size(); i++) {
 				StringBuilder sql = new StringBuilder();
 				sql.append("delete from reply         																					");
-				sql.append("where art_no = (select art_no from article where board_no = ?)							");
+				sql.append("where art_no in (select art_no from article where board_no = ?)							");
 				pstmt = conn.prepareStatement(sql.toString());
 
 				pstmt.setInt(1, list.get(i));
