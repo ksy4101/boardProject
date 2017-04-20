@@ -108,7 +108,6 @@ public class InsertArticleJPanel extends JPanel {
                      JOptionPane.showMessageDialog(contTA, "내용을 입력하세요.");
                   } else {
                      ArticleDAO dao = new ArticleDAO();
-//                     System.out.println(boardNo + "번호");
                      dao.insertArticle(new ArticleVO(boardNo, id, subTF.getText(), contTA.getText()));
 
                      JOptionPane.showMessageDialog(insertB, "등록되었습니다.");
