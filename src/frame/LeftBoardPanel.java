@@ -136,7 +136,7 @@ public class LeftBoardPanel extends JPanel{
 
 		list.setToolTipText("");
 		list.setForeground(Color.BLACK);
-		list.setFont(new Font("굴림", Font.PLAIN, 40));
+		list.setFont(new Font("굴림", Font.PLAIN, 25));
 		list.setBackground(Color.LIGHT_GRAY);
 		scrollPane.setViewportView(list);
 
