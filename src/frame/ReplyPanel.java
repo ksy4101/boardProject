@@ -385,6 +385,7 @@ public class ReplyPanel extends JPanel {
 	                boolean b = Pattern.matches(p, reContent);
 	               if(!b){
 	            	   JOptionPane.showMessageDialog(ReplyPanel.this, " 댓글내용을 입력하세요");
+	            	   return;
 	               }
 
 					ReplyDAO dao = new ReplyDAO();
@@ -418,6 +419,7 @@ public class ReplyPanel extends JPanel {
 	                boolean b = Pattern.matches(p, reContent);
 	               if(!b){
 	            	   JOptionPane.showMessageDialog(ReplyPanel.this, "댓글내용을 입력하세요");
+	            	   return;
 	               }
 
 					ReplyDAO dao = new ReplyDAO();
