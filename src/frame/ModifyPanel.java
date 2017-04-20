@@ -56,7 +56,7 @@ public class ModifyPanel extends JPanel {
          public void actionPerformed(ActionEvent e) {
             // 게시판 등록 버튼
             try {
-                String p = "([a-zA-Z0-9가-힣]{1,100})";
+                String p = "((\\w+\\s*){1,100})";
                     boolean b = Pattern.matches(p, addBoardTF.getText());
                if(!b){
                   JOptionPane.showMessageDialog(null, "게시판 이름을 작성해주세요");
@@ -167,7 +167,7 @@ public class ModifyPanel extends JPanel {
                      updateB.setText("확인");
                   } else if (e.getActionCommand().equals("확인")) {
                      try {
-                        String p = "([a-zA-Z0-9가-힣]{1,100})";
+                        String p = "((\\w+\\s*){1,100})";
                         boolean b = Pattern.matches(p, modifyBoardTF.getText());
                         if(!b){
                            JOptionPane.showMessageDialog(null,"게시판 이름을 작성해주세요");

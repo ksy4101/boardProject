@@ -98,7 +98,7 @@ public class InsertArticleJPanel extends JPanel {
                      JOptionPane.showMessageDialog(null, "게시판 이름을 작성해주세요");
                   }*/
                   
-                  String p = "([a-zA-Z0-9가-힣]{1,100})";
+                  String p = "((\\w+\\s*){1,100})";
                       boolean b = Pattern.matches(p, subTF.getText());
                       boolean c = Pattern.matches(p, contTA.getText());
                        
@@ -108,7 +108,7 @@ public class InsertArticleJPanel extends JPanel {
                      JOptionPane.showMessageDialog(contTA, "내용을 입력하세요.");
                   } else {
                      ArticleDAO dao = new ArticleDAO();
-                     System.out.println(boardNo + "번호");
+//                     System.out.println(boardNo + "번호");
                      dao.insertArticle(new ArticleVO(boardNo, id, subTF.getText(), contTA.getText()));
 
                      JOptionPane.showMessageDialog(insertB, "등록되었습니다.");
