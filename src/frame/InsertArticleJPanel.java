@@ -92,12 +92,6 @@ public class InsertArticleJPanel extends JPanel {
             Object t = e.getSource();
             try {
                if (t == insertB) {
-                  /*String p = "([a-zA-Z0-9가-힣]{1,100})";
-                       boolean b = Pattern.matches(p, addBoardTF.getText());
-                  if(!b){
-                     JOptionPane.showMessageDialog(null, "게시판 이름을 작성해주세요");
-                  }*/
-                  
                   String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
                       boolean b = Pattern.matches(p, subTF.getText());
                       boolean c = Pattern.matches(p, contTA.getText());

@@ -86,7 +86,6 @@ public class LeftBoardPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Object target = e.getSource();
 				if (target == boardMgrBtn) {
 					BoardFrame.rightPanel.add("modify", new ModifyPanel(board, member));

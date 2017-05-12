@@ -41,7 +41,6 @@ public class BoardFrame extends JFrame{
       setContentPane(contentPane);
       contentPane.setLayout(null);
 
-      //JPanel leftPanel = new JPanel();
       leftPanel.setBackground(Color.WHITE);
       leftPanel.setBounds(0, 0, 500, 962);
       contentPane.add(leftPanel);
@@ -57,9 +56,7 @@ public class BoardFrame extends JFrame{
       
       rightPanel.add("main", new ArticlePanel(member,boardNo));
       
-      card.show(rightPanel, "main");
-      
-      
+      card.show(rightPanel, "main");      
       
       setVisible(true);
 

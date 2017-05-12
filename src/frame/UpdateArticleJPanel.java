@@ -27,16 +27,11 @@ public class UpdateArticleJPanel extends JPanel {
 
    private int artNo;
    private ArticleDAO dao = new ArticleDAO();
-   private MemberDAO mdao = new MemberDAO();
+   private MemberDAO mdao = new MemberDAO();  
+
    
-
-   /**
-    * Create the panel.
-    */
    public UpdateArticleJPanel(MemberVO member, int artNo, int boardNo) {
-
       
-      //this.artNo = artNo;
       Vector<Integer> artNoList = new Vector<Integer>();
       artNoList.addElement(artNo);
       

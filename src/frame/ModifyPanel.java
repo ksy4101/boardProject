@@ -33,10 +33,7 @@ public class ModifyPanel extends JPanel {
    private int y = 10;
    private BoardFrame board;
    private JScrollPane scrollPane = new JScrollPane();
-
-   /**
-    * Create the panel.
-    */
+   
    public ModifyPanel(BoardFrame board, MemberVO member) {
       this.board = board;
       setBounds(0, 0, 1284, 962);
@@ -173,15 +170,7 @@ public class ModifyPanel extends JPanel {
                      modifyBoardTF.setEditable(true);
                      updateB.setText("확인");
                   } else if (e.getActionCommand().equals("확인")) {
-                     try {
-                    	 /*String p = "[a-zA-Z0-9가-힣ㄱ-ㅎ\\s]+";
-                    	 //String p = "([a-zA-Z0-9가-힣ㄱ-ㅎ]+[a-zA-Z0-9가-힣ㄱ-ㅎ\\s])";
-                        //String p = "([a-z]*[A-Z]*[0-9]*[가-힣]*\\s*{1,100})";
-                        boolean b = Pattern.matches(p, modifyBoardTF.getText());
-                        if(!b){*/
-                    	/*if(modifyBoardTF.getText().charAt(0) == ' '){
-                           JOptionPane.showMessageDialog(null,"게시판 이름을 작성해주세요");
-                        } */
+                     try {                    	 
                     	 String p = "((\\S|[a-zA-Z0-9가-힣ㄱ-ㅎ]+\\s){1,100})";
                          boolean b = Pattern.matches(p, modifyBoardTF.getText());
                     	 if(!b){
