@@ -14,7 +14,7 @@ public class DBConn {
 		}
 		
 		String url = "jdbc:oracle:thin:@192.168.40.59:1521:xe";
-		String user = "asd111";
+		String user = "asd1234";
 		String password = "java1234";
 		return DriverManager.getConnection(url,user,password);
 		
